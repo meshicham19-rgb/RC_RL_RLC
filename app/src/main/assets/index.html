@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Électricité 2BAC — RC, RL, RLC libre · Pr Hicham MESBAH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@500&family=Great+Vibes&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1b2340;--navy:#14213d;--navy2:#22305a;--amber:#f2a541;--amber-d:#c97d10;--teal:#2a9d8f;--coral:#e76f51;--red:#e63946;--blue:#3d6fb6;--paper:#fbf8f1;--card:#fff;--line:#e6dfd0;--muted:#5d6475;--violet:#6d4bb0}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;font-size:17px;line-height:1.62}
+header.top{position:sticky;top:0;z-index:50;background:linear-gradient(90deg,#14213d,#2d2b6b);color:#fff;box-shadow:0 2px 14px rgba(0,0,0,.25)}
+.top-in{max-width:1180px;margin:auto;padding:8px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-family:Fraunces,serif;font-weight:700;color:var(--amber);font-size:15px;white-space:nowrap;text-decoration:none}
+nav.sec{display:flex;gap:3px;overflow-x:auto;flex:1;scrollbar-width:none;min-width:0}
+nav.sec::-webkit-scrollbar{display:none}
+nav.sec a{color:#dfe3f3;text-decoration:none;font-size:13px;padding:5px 10px;border-radius:999px;white-space:nowrap;font-family:Fraunces,serif;font-weight:500}
+nav.sec a.on,nav.sec a:hover{background:rgba(242,165,65,.22);color:#fff}
+.tools{display:flex;gap:6px}
+.btn{font-family:Fraunces,serif;font-weight:700;font-size:13px;border:0;border-radius:999px;padding:6px 13px;cursor:pointer;background:var(--amber);color:#2a1a00;transition:transform .1s,filter .2s}
+.btn:hover{filter:brightness(1.06)}.btn:active{transform:scale(.96)}
+.btn.ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.28)}
+.btn.o{background:#fff;color:var(--ink);border:1px solid #cfc7e8}
+.btn.o.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn.t{background:var(--teal);color:#fff}
+.btn.v{background:var(--violet);color:#fff}
+.btn.sm{font-size:12px;padding:5px 10px}
+.prog{height:3px;background:linear-gradient(90deg,var(--amber),var(--coral));width:0}
+main{max-width:1100px;margin:auto;padding:20px 14px 60px}
+.chap{display:none}.chap.on{display:block}
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:20px;background:radial-gradient(circle at 80% 20%,#3b3a8a,#14213d 70%);color:#fff;border-radius:22px;padding:26px;border:3px solid var(--amber);box-shadow:0 14px 40px rgba(20,33,61,.3)}
+.hero .pill{display:inline-block;background:var(--amber);color:#2a1a00;font-family:Fraunces,serif;font-weight:700;font-size:13px;border-radius:999px;padding:4px 14px}
+.hero .pill2{display:inline-block;margin-top:10px;border:1px solid rgba(255,255,255,.35);font-size:12px;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:3px 12px;color:#cfe8e4}
+.hero h1{font-family:Fraunces,serif;font-size:34px;line-height:1.15;margin:14px 0 10px}
+.hero h1 em{color:var(--amber);font-style:normal}
+.hero p{color:#dfe3f3;font-size:15.5px;margin:0 0 14px}
+.hero-cv{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.18);border-radius:16px;overflow:hidden;min-height:200px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:22px 0}
+.cards a{display:block;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:0 4px 16px rgba(20,33,61,.05);transition:transform .15s,box-shadow .15s}
+.cards a:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(20,33,61,.12)}
+.cards a i{font-style:normal;font-family:Fraunces,serif;font-weight:800;color:var(--amber-d);font-size:13px;letter-spacing:.06em}
+.cards a b{display:block;font-family:Fraunces,serif;color:var(--navy2);font-size:18px;margin:2px 0 4px}
+.cards a span{display:block;font-size:14px;color:var(--muted);line-height:1.45}
+.chead{background:linear-gradient(120deg,#14213d,#33307a);color:#fff;border-radius:18px;padding:18px 22px;border-bottom:4px solid var(--amber);display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.chead .k{font-family:Fraunces,serif;font-weight:800;font-size:13px;color:var(--amber);letter-spacing:.08em;text-transform:uppercase}
+.chead h1{font-family:Fraunces,serif;margin:2px 0 0;font-size:28px;line-height:1.15}
+.chead .s{margin-left:auto;font-family:Fraunces,serif;font-style:italic;font-size:13px;color:#d9d3ff}
+section.ch{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin:22px 0;box-shadow:0 6px 24px rgba(20,33,61,.06)}
+.ch-h{display:flex;align-items:center;gap:12px;border-bottom:2px solid var(--navy);padding-bottom:10px;margin-bottom:12px}
+.num{background:var(--navy);color:var(--amber);font-family:Fraunces,serif;font-weight:800;border-radius:10px;min-width:40px;height:40px;display:grid;place-items:center;font-size:17px}
+h2{font-family:Fraunces,serif;font-size:23px;margin:0;flex:1;line-height:1.2}
+.sig{font-family:Fraunces,serif;font-style:italic;font-size:12px;color:var(--violet);background:#f1ecfb;border-radius:999px;padding:3px 10px;white-space:nowrap}
+h3{font-family:Fraunces,serif;font-size:18px;color:var(--navy2);border-left:4px solid var(--amber);padding:4px 10px;background:#f5f3fb;border-radius:0 8px 8px 0;margin:22px 0 10px}
+.box{border:2px solid var(--amber);border-radius:12px;padding:16px 16px 12px;margin:18px 0 14px;background:#fffdf6;position:relative}
+.box .tag{position:absolute;top:-12px;left:14px;background:var(--navy);color:#fff;font-family:Fraunces,serif;font-size:12px;padding:2px 11px;border-radius:999px}
+.f{text-align:center;font-size:21px;font-style:italic;margin:4px 0 8px}
+.box ul{margin:4px 0;padding-left:20px;font-size:15.5px}
+.box p{margin:4px 0;font-size:15.5px}
+.note{border-left:4px solid var(--teal);background:#eef8f6;padding:10px 14px;border-radius:0 10px 10px 0;margin:12px 0;font-size:16px}
+.note.warn{border-left-color:var(--coral);background:#fdf1ec}
+.note.star{border-left-color:var(--amber);background:#fff7e8}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sim{border:1px solid #d9d3f0;background:#f7f6fd;border-radius:14px;padding:12px;margin:20px 0}
+.sim-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.sim-h b{font-family:Fraunces,serif;flex:1;min-width:210px;font-size:16px}
+.sim-h b i{font-style:normal;color:var(--amber-d)}
+.stage{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+canvas{display:block;width:100%;touch-action:manipulation}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:9px;font-size:14.5px}
+.ctrl label{display:flex;align-items:center;gap:6px}
+.ctrl label b{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--violet);min-width:62px}
+.ctrl select{font-family:inherit;font-size:14px;padding:4px 8px;border-radius:8px;border:1px solid #cfc7e8;background:#fff}
+input[type=range]{accent-color:var(--violet);width:150px}
+.read{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13.5px;margin-top:9px;font-family:'JetBrains Mono',monospace;color:var(--navy2)}
+.read b{color:var(--coral)}
+.eq{background:#fff;border:1px dashed #cfc7e8;border-radius:10px;padding:10px 14px;margin-top:9px;font-size:16px}
+.sim.zoom{position:fixed;inset:0;z-index:100;margin:0;border-radius:0;overflow:auto;padding:14px max(14px,calc((100vw - 1100px)/2))}
+.rv{display:inline-block;min-width:5.8em;text-align:center;background:#fdebc8;border-bottom:2px dashed var(--amber-d);color:transparent;cursor:pointer;border-radius:5px;padding:0 .35em;position:relative;line-height:1.35;user-select:none;transition:background .25s}
+.rv:after{content:"✦ Révéler";position:absolute;inset:0;color:#a8640c;font-size:.74em;font-weight:600;display:flex;align-items:center;justify-content:center;font-family:Fraunces,serif;white-space:nowrap}
+.rv.on{color:var(--navy);font-weight:600;background:#e2f4ef;border-bottom-color:var(--teal)}
+.rv.on:after{display:none}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;line-height:1.25}
+.fr>span:first-child{border-bottom:1.5px solid currentColor;padding:0 4px}
+.sq{white-space:nowrap}.sq:before{content:"√";font-style:normal}.sq>span{border-top:1.5px solid currentColor;padding:0 2px}
+table.t{border-collapse:collapse;width:100%;font-size:15px;margin:10px 0;background:#fff}
+table.t th,table.t td{border:1px solid var(--line);padding:6px 8px;text-align:center}
+table.t th{background:#f1eefb;font-family:Fraunces,serif;font-weight:700;color:var(--navy2)}
+.tw{overflow-x:auto}
+details.sol{border:1px solid #cfe6e1;border-radius:12px;background:#f6fbfa;margin:12px 0;padding:0 14px}
+details.sol summary{cursor:pointer;font-family:Fraunces,serif;font-weight:700;color:var(--teal);padding:10px 0}
+details.sol[open]{padding-bottom:10px}
+.ex{border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:14px 0;background:#fffefb}
+.ex>b{font-family:Fraunces,serif;color:var(--coral)}
+.q{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:12px 0;background:#fff}
+.q p{margin:0 0 8px;font-weight:600}
+.q .ops{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.q button{font-family:inherit;font-size:15px;text-align:left;border:1px solid #d6d0ea;background:#faf9ff;border-radius:10px;padding:8px 10px;cursor:pointer;color:var(--ink)}
+.q button:hover:not(:disabled){border-color:var(--violet)}
+.q button.ok{background:#dff3ee;border-color:var(--teal)}
+.q button.ko{background:#fde4df;border-color:var(--coral)}
+.q button:disabled{cursor:default}
+.q .exp{display:none;margin-top:8px;font-size:14.5px;color:var(--navy2);background:#f5f3fb;border-radius:8px;padding:6px 10px}
+.q.done .exp{display:block}
+.score{position:sticky;bottom:10px;margin:16px auto 0;max-width:480px;background:var(--navy);color:#fff;border-radius:999px;padding:9px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:Fraunces,serif;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.score b{color:var(--amber);font-size:20px}
+.chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;margin:12px 0;font-family:Fraunces,serif;font-size:14px}
+.chain span{background:#fff;border:2px solid var(--violet);border-radius:10px;padding:6px 10px;font-weight:700;color:var(--navy2)}
+.chain em{font-style:normal;color:var(--amber-d);font-weight:800}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:20px}
+.pager a{flex:1;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-family:Fraunces,serif;font-weight:700;color:var(--navy2)}
+.pager a.n{text-align:right}
+footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 10px 40px}
+footer b{font-family:Fraunces,serif;color:var(--violet)}
+@media(max-width:760px){
+ body{font-size:16px}
+ .hero{grid-template-columns:1fr;padding:18px}
+ .hero h1{font-size:27px}
+ .grid2{grid-template-columns:1fr}
+ section.ch{padding:16px 14px}
+ h2{font-size:20px}
+ .sig,.chead .s{display:none}
+ .chead h1{font-size:23px}
+ .q .ops{grid-template-columns:1fr}
+ .brand{font-size:13px}
+ .f{font-size:18px}
+ input[type=range]{width:120px}
+}
+.der{margin:8px 0 4px 6px;border-left:3px solid #d9cdf3;padding:4px 0 4px 14px}.der>div{margin:7px 0;line-height:2.1}.der>div.res{background:#fff6e5;border-radius:8px;padding:4px 10px;display:inline-block}
+.derbar{display:flex;gap:8px;align-items:center;margin:4px 0 14px 20px}.derbar span{font:600 12px Fraunces,serif;color:#6d4bb0}.derbar .btn:disabled{opacity:.45}
+h4{font-family:Fraunces,serif;color:#6d4bb0;margin:16px 0 6px;font-size:16px}
+
+/* ====== Thème « Nuit électrique » — Pr Hicham MESBAH ====== */
+:root{--ink:#111a33;--navy:#0b1736;--navy2:#1e2a5a;--amber:#ffc23a;--amber-d:#d98c00;--teal:#0fb5ae;--coral:#ff5d8f;--red:#e5384f;--blue:#2f6fed;--paper:#f3f6fd;--line:#dde4f4;--muted:#56607a;--violet:#7b3fe4;--cyan:#22d3ee;--mag:#e0247a}
+body{background:radial-gradient(1200px 500px at 90% -10%,#e7ecff 0,transparent 60%),radial-gradient(900px 400px at -10% 30%,#e9fbfb 0,transparent 55%),var(--paper)}
+header.top{background:linear-gradient(90deg,#070f2b,#1b1550 55%,#3a1373);box-shadow:0 4px 22px rgba(10,15,50,.45);border-bottom:1px solid rgba(34,211,238,.35)}
+.brand{display:flex;align-items:center;gap:9px;color:#fff}
+.mono{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:conic-gradient(from 200deg,#22d3ee,#7b3fe4,#e0247a,#ffc23a,#22d3ee);box-shadow:0 0 14px rgba(34,211,238,.55);position:relative}
+.mono:after{content:'HM';position:absolute;inset:3px;border-radius:50%;background:#0b1736;color:#ffc23a;font:800 12px Fraunces,serif;display:grid;place-items:center;letter-spacing:.04em}
+.brand .nm{font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-style:italic;font-weight:700;font-size:24px;font-weight:400;color:#ffe3a0;text-shadow:0 0 12px rgba(255,194,58,.45);line-height:1}
+nav.sec a.on,nav.sec a:hover{background:linear-gradient(90deg,rgba(34,211,238,.25),rgba(123,63,228,.35));color:#fff}
+.btn{background:linear-gradient(135deg,#ffd76a,#ffb11f);color:#2a1a00;box-shadow:0 3px 10px rgba(255,177,31,.3)}
+.btn.t{background:linear-gradient(135deg,#19c6be,#0e8f8a);color:#fff;box-shadow:0 3px 10px rgba(15,181,174,.3)}
+.btn.v{background:linear-gradient(135deg,#9a5cff,#6a2fd6);color:#fff;box-shadow:0 3px 10px rgba(123,63,228,.3)}
+.btn.o.on{background:linear-gradient(135deg,#1e2a5a,#3a1373);border-color:#3a1373}
+.prog{height:3px;background:linear-gradient(90deg,#22d3ee,#7b3fe4,#e0247a,#ffc23a)}
+.hero{grid-template-columns:1.15fr 1fr;background:radial-gradient(circle at 85% 15%,rgba(123,63,228,.55),transparent 45%),radial-gradient(circle at 10% 95%,rgba(34,211,238,.35),transparent 45%),linear-gradient(135deg,#070f2b,#14114a 60%,#2a0f55);border:0;box-shadow:0 20px 50px rgba(11,23,54,.45),inset 0 0 0 1px rgba(255,255,255,.08);position:relative;overflow:hidden}
+.hero:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 40px),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 40px);pointer-events:none}
+.signature{display:flex;align-items:center;gap:16px;margin:2px 0 10px;position:relative}
+.signature .mono{flex-shrink:0;width:72px;height:72px;box-shadow:0 0 30px rgba(34,211,238,.6)}
+.signature .mono:after{inset:5px;font-size:24px}
+.signature .who{display:flex;flex-direction:column}
+.signature .pr{font:700 13px Fraunces,serif;letter-spacing:.32em;text-transform:uppercase;color:#7fe7f5}
+.signature .nm{font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-style:italic;font-weight:700;font-size:56px;line-height:1.05;background:linear-gradient(90deg,#ffe7a6,#ffc23a 45%,#ff8fc0);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 14px rgba(255,194,58,.35))}
+.signature .ln{height:2px;width:100%;background:linear-gradient(90deg,#22d3ee,#7b3fe4,transparent);margin-top:2px;border-radius:2px}
+.hero h1{font-size:36px;margin:12px 0 8px;position:relative}
+.hero h1 em{background:linear-gradient(90deg,#22d3ee,#a78bfa,#ff8fc0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{position:relative}
+.chips{display:flex;gap:8px;flex-wrap:wrap;position:relative;margin-top:6px}
+.chips span{font:700 12px Fraunces,serif;color:#fff;border-radius:999px;padding:4px 12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22)}
+.hero-cv{border:1px solid rgba(34,211,238,.35);box-shadow:0 0 30px rgba(34,211,238,.18) inset;position:relative}
+.cards a{border:0;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#22d3ee,#7b3fe4,#e0247a) border-box;border:2px solid transparent}
+.cards a i{color:#7b3fe4}
+.cards a b{color:#14114a}
+.chead{background:radial-gradient(circle at 90% 0,rgba(123,63,228,.6),transparent 50%),linear-gradient(120deg,#070f2b,#1b1550 60%,#3a1373);border-bottom:0;box-shadow:0 12px 30px rgba(20,17,74,.3);position:relative}
+.chead:after{content:'';position:absolute;left:18px;right:18px;bottom:0;height:3px;border-radius:3px;background:linear-gradient(90deg,#22d3ee,#7b3fe4,#e0247a,#ffc23a)}
+.chead .k{color:#7fe7f5}
+.chead .s{display:flex;align-items:center;gap:8px;font-style:normal}
+.chead .s .nm{font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-style:italic;font-weight:700;font-size:30px;color:#ffe3a0;text-shadow:0 0 10px rgba(255,194,58,.4)}
+section.ch{border:1px solid var(--line);box-shadow:0 10px 30px rgba(30,42,90,.07)}
+.ch-h{border-bottom:2px solid transparent;border-image:linear-gradient(90deg,#1e2a5a,#7b3fe4,#22d3ee) 1}
+.num{background:linear-gradient(135deg,#1e2a5a,#3a1373);color:#ffc23a;box-shadow:0 4px 12px rgba(58,19,115,.3)}
+h2{color:#14114a}
+.sig{font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-style:italic;font-weight:700;font-style:normal;font-size:20px;color:#7b3fe4;background:none;padding:0 4px}
+h3{color:#1e2a5a;border-left:4px solid #22d3ee;background:linear-gradient(90deg,#e9f6ff,transparent)}
+h4{color:#7b3fe4}
+.box{border:2px solid transparent;background:linear-gradient(#fffdf7,#fffdf7) padding-box,linear-gradient(135deg,#ffc23a,#ff8fc0 60%,#7b3fe4) border-box}
+.box .tag{background:linear-gradient(90deg,#1e2a5a,#3a1373)}
+.f{color:#14114a}
+.der{border-left:3px solid #a78bfa}
+.der>div.res{background:linear-gradient(90deg,#fff3d6,#ffe6f1)}
+footer{background:linear-gradient(90deg,#070f2b,#1b1550 55%,#3a1373);color:#cfd6f3;text-align:center;padding:26px 14px}
+footer .nm{display:block;font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-style:italic;font-weight:700;font-size:42px;color:#ffe3a0;text-shadow:0 0 14px rgba(255,194,58,.45);line-height:1.1}
+@media(max-width:820px){.hero{grid-template-columns:1fr}}
+@media(max-width:640px){.signature .nm{font-size:42px}.signature .mono{width:58px;height:58px}.signature .mono:after{font-size:19px}.brand .nm{font-size:20px}.chead .s .nm{font-size:26px}}
+.signature .nm{font-size:50px;letter-spacing:.01em}
+.brand .nm{font-size:19px}.chead .s .nm{font-size:22px}footer .nm{font-size:34px}
+.signature .dr{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.signature .dr b{font:700 11.5px Fraunces,serif;letter-spacing:.14em;text-transform:uppercase;color:#7fe7f5}
+.signature .dr span{font:600 12.5px Fraunces,serif;color:#fff;padding:3px 10px;border-radius:999px;background:linear-gradient(90deg,rgba(34,211,238,.18),rgba(123,63,228,.28));border:1px solid rgba(127,231,245,.35)}
+footer .dr{display:block;margin:4px 0 6px;color:#7fe7f5;font:600 13px Fraunces,serif;letter-spacing:.04em}
+@media(max-width:640px){.signature .nm{font-size:38px}}
+</style>
+</head>
+<body>
+<header class="top">
+ <div class="top-in">
+  <a class="brand" href="#accueil"><span class="mono"></span><span class="nm">Pr Hicham MESBAH</span></a>
+  <nav class="sec" id="nav">
+   <a href="#accueil">Accueil</a><a href="#rc">Dipôle RC</a><a href="#rl">Dipôle RL</a><a href="#rlc">Oscillations libres RLC</a>
+  </nav>
+  <div class="tools"><button class="btn sm" id="revealAll">✦ Tout révéler</button><button class="btn ghost sm" id="fs">⛶ Plein écran</button></div>
+ </div>
+ <div class="prog" id="prog"></div>
+</header>
+
+<main>
+<!-- ======================= ACCUEIL ======================= -->
+<div class="chap" id="accueil">
+ <div class="hero">
+  <div>
+   <div class="signature"><span class="mono"></span><div class="who"><span class="pr">Professeur</span><span class="nm">Hicham MESBAH</span><span class="ln"></span><div class="dr"><b>Docteur en</b><span>⚡ Électronique</span><span>〰 Traitement du signal</span><span>◎ Contrôle non destructif</span></div></div></div>
+   <h1>Électricité<br><em>RC · RL · RLC libre</em></h1>
+   <p>Chaque démonstration détaillée ligne par ligne, chaque courbe animée, et des simulations que tu pilotes toi-même : interrupteur, R, L, C, E et curseur de temps.</p>
+   <div class="chips"><span>2BAC PC</span><span>Physique-Chimie</span><span>2026 / 2027</span></div>
+  </div>
+  <div class="hero-cv"><canvas id="cvHero"></canvas></div>
+ </div>
+ <div class="cards">
+  <a href="#rc"><i>CHAPITRE 1</i><b>Le dipôle RC</b><span>Condensateur, capacité, association, charge et décharge, constante de temps, énergie électrique.</span></a>
+  <a href="#rl"><i>CHAPITRE 2</i><b>Le dipôle RL</b><span>Bobine, retard à l'établissement du courant, échelon montant et descendant, rôle de la diode, énergie magnétique.</span></a>
+  <a href="#rlc"><i>CHAPITRE 3</i><b>Oscillations libres dans un circuit RLC série</b><span>Régimes, circuit LC idéal, période propre, échanges d'énergie, amortissement, entretien des oscillations.</span></a>
+ </div>
+ <div class="note star"><b>Mode d'emploi :</b> les cases <span class="rv on">comme celle-ci</span> cachent un résultat : clique pour le révéler (ou « ✦ Tout révéler »). Les démonstrations s'affichent étape par étape avec le bouton <b>« Étape suivante »</b>. Les encadrés <b style="color:#c22a37">⚠ Attention</b> signalent les pièges classiques.</div>
+</div>
+
+<!-- ======================= RC ======================= -->
+<div class="chap" id="rc">
+ <div class="chead"><div><div class="k">Chapitre 1 · Électricité</div><h1>Le dipôle RC</h1></div><div class="s"><span class="mono"></span><span class="nm">Pr Hicham MESBAH</span></div></div>
+
+ <section class="ch">
+  <div class="ch-h"><div class="num">I</div><h2>Le condensateur</h2><span class="sig">Pr Hicham MESBAH</span></div>
+  <h3>1) Définition</h3>
+  <p>Le condensateur est un dipôle électrique constitué de deux <span class="rv">armatures conductrices</span> séparées par un <span class="rv">isolant</span> (diélectrique). Il a la particularité de <b>stocker l'énergie électrique</b> lorsqu'il est soumis à une tension électrique u.</p>
+  <div class="sim">
+   <div class="sim-h"><b><i>Animation 1 :</i> Le condensateur réel — armatures, isolant, charges q<sub>A</sub> et q<sub>B</sub>, symbole</b><button class="btn t sm" id="capCh">▶ Charger</button><button class="btn v sm" id="capDe">◀ Décharger</button><button class="btn o sm zoomb">⤢ Agrandir</button></div>
+   <div class="stage"><canvas id="cvCap"></canvas></div>
+   <div class="read" id="capRead"></div>
+  </div>
+  <p>Chaque condensateur est caractérisé par une grandeur appelée <b>capacité</b>, de symbole <b>C</b>, dont l'unité dans le système international est le <span class="rv">farad (F)</span>.</p>
+  <div class="tw"><table class="t"><tr><th>1 mF</th><th>1 µF</th><th>1 nF</th><th>1 pF</th></tr><tr><td><span class="rv">10⁻³ F</span></td><td><span class="rv">10⁻⁶ F</span></td><td><span class="rv">10⁻⁹ F</span></td><td><span class="rv">10⁻¹² F</span></td></tr></table></div>
+  <p>La <b>charge q</b> d'un condensateur représente la quantité d'électricité accumulée sur l'une de ses armatures :</p>
+  <div class="box"><span class="tag">Charge du condensateur</span><div class="f">q = q<sub>A</sub> = −q<sub>B</sub></div><p>(A est l'armature par laquelle le courant i entre : q<sub>A</sub> &gt; 0 et q<sub>B</sub> &lt; 0 pendant la charge.)</p></div>
+
+  <h3>a) Relation entre le courant et la charge</h3>
+  <p>L'intensité du courant électrique est la quantité d'électricité reçue par l'armature du condensateur par unité de temps :</p>
+  <div class="grid2">
+   <div class="box"><span class="tag">Cas général</span><p>Pour un courant variable, l'intensité est la dérivée de la charge par rapport au temps :</p><div class="f">i = <span class="fr"><span>dq</span><span>dt</span></span></div></div>
+   <div class="box"><span class="tag">Courant constant I</span><p>Pour une intensité de courant constante I, la charge augmente régulièrement et la relation devient :</p><div class="f">I = <span class="fr"><span>q</span><span>Δt</span></span></div></div>
+  </div>
+  <h3>b) Relation entre la charge et la tension aux bornes du condensateur</h3>
+  <p>La charge q d'un condensateur est directement proportionnelle à la tension électrique entre ses bornes :</p>
+  <div class="box"><span class="tag">Relation charge–tension</span><div class="f">q(t) = C · u<sub>C</sub>(t)</div></div>
+  <h3>c) Relation entre la tension et l'intensité du courant</h3>
+  <p>En combinant les deux relations précédentes, on obtient la relation entre la tension u<sub>C</sub> aux bornes du condensateur et l'intensité i du courant :</p>
+  <div class="der" data-step>
+   <div>On sait que : i = <span class="fr"><span>dq</span><span>dt</span></span> &nbsp;et&nbsp; q = C·u<sub>C</sub></div>
+   <div>⟹ i = <span class="fr"><span>d</span><span>dt</span></span>(C·u<sub>C</sub>) &nbsp;(C est constante)</div>
+   <div class="res">⟹ <b>i = C · <span class="fr"><span>du<sub>C</sub></span><span>dt</span></span></b></div>
+  </div>
+  <div class="note"><b>Grandeurs variables et invariables :</b> q, u<sub>C</sub>, i et u<sub>R</sub> varient au cours du temps ; C et R sont des constantes du circuit.</div>
+
+  <h3>2) Association des condensateurs</h3>
+  <div class="grid2">
+   <div class="box"><span class="tag">a) Association en série</span><p>L'association en série de deux condensateurs de capacités C₁ et C₂ se comporte comme un condensateur équivalent de capacité C<sub>éq</sub>. Démonstration :</p>
+    <div class="der" data-step>
+     <div>Même courant dans les deux condensateurs : <b>i = i₁ = i₂</b> ⟹ <b>q = q₁ = q₂</b></div>
+     <div>Additivité des tensions : u<sub>AB</sub> = u₁ + u₂</div>
+     <div><span class="fr"><span>q</span><span>C<sub>éq</sub></span></span> = <span class="fr"><span>q</span><span>C₁</span></span> + <span class="fr"><span>q</span><span>C₂</span></span> &nbsp;(car u₁ = q/C₁ et u₂ = q/C₂)</div>
+     <div class="res"><b><span class="fr"><span>1</span><span>C<sub>éq</sub></span></span> = <span class="fr"><span>1</span><span>C₁</span></span> + <span class="fr"><span>1</span><span>C₂</span></span></b></div>
+    </div>
+    <p>Le montage en série sert à <span class="rv">diminuer</span> la capacité.</p></div>
+   <div class="box"><span class="tag">b) Association en parallèle</span><p>L'association en parallèle de deux condensateurs C₁ et C₂ se comporte aussi comme un condensateur équivalent de capacité C<sub>éq</sub>. Démonstration :</p>
+    <div class="der" data-step>
+     <div>Même tension : <b>u₁ = u₂ = u<sub>AB</sub></b></div>
+     <div>Loi des nœuds : i = i₁ + i₂ ⟹ <span class="fr"><span>dq</span><span>dt</span></span> = <span class="fr"><span>dq₁</span><span>dt</span></span> + <span class="fr"><span>dq₂</span><span>dt</span></span> ⟹ q = q₁ + q₂</div>
+     <div>C<sub>éq</sub>·u<sub>AB</sub> = C₁·u<sub>AB</sub> + C₂·u<sub>AB</sub></div>
+     <div class="res"><b>C<sub>éq</sub> = C₁ + C₂</b></div>
+    </div>
+    <p>Le montage en parallèle sert à <span class="rv">augmenter</span> la capacité.</p></div>
+  </div>
+  <div class="note warn"><b>⚠ Attention :</b> en série, c'est la <b>charge</b> (et le courant) qui est la même pour les deux condensateurs : i = i₁ = i₂ et q = q₁ = q₂. Ce sont les <b>tensions</b> qui s'ajoutent.</div>
+  <div class="sim">
+   <div class="sim-h"><b><i>Animation 2 :</i> Association de deux condensateurs</b><button class="btn o sm" id="asS">Série</button><button class="btn o sm" id="asP">Parallèle</button><button class="btn o sm zoomb">⤢ Agrandir</button></div>
+   <div class="stage"><canvas id="cvAs"></canvas></div>
+   <div class="ctrl"><label>C₁ <input type="range" id="asC1" min="1" max="20" step="1" value="4"><b id="asC1v"></b></label><label>C₂ <input type="range" id="asC2" min="1" max="20" step="1" value="12"><b id="asC2v"></b></label><label>U<sub>AB</sub> <input type="range" id="asU" min="2" max="12" step="1" value="6"><b id="asUv"></b></label></div>
+   <div class="read" id="asRead"></div>
+  </div>
+ </section>
+
+ <section class="ch">
+  <div class="ch-h"><div class="num">II</div><h2>Réponse d'un dipôle RC à un échelon de tension</h2><span class="sig">Pr Hicham MESBAH</span></div>
+  <div class="sim">
+   <div class="sim-h"><b><i>Animation 3 :</i> Circuit RC et oscilloscope — K en position 1 (charge) ou 2 (décharge)</b><button class="btn o sm zoomb">⤢ Agrandir</button></div>
+   <div class="stage"><canvas id="cvRC"></canvas></div>
+   <div class="ctrl"><button class="btn t" id="rcK1">K → 1 (charge)</button><button class="btn v" id="rcK2">K → 2 (décharge)</button>
+    <label>Mode <select id="rcMode"><option value="man">Interrupteur K</option><option value="sq">GBF créneau</option></select></label>
+    <label>Période T <input type="range" id="rcT" min="10" max="100" step="5" value="40"><b id="rcTv"></b></label></div>
+   <div class="ctrl"><label>R <input type="range" id="rcR" min="200" max="2000" step="100" value="1000"><b id="rcRv"></b></label>
+    <label>C <input type="range" id="rcC" min="1" max="10" step="0.5" value="4"><b id="rcCv"></b></label>
+    <label>E <input type="range" id="rcE" min="2" max="12" step="1" value="6"><b id="rcEv"></b></label>
+    <label><input type="checkbox" id="rcUR"> u<sub>R</sub></label><label><input type="checkbox" id="rcTau" checked> τ (tangente, 63 %)</label></div>
+   <div class="read" id="rcRead"></div>
+  </div>
+
+  <h3>1) Réponse à un échelon montant de tension (charge)</h3>
+  <h4>a) Équation différentielle</h4>
+  <p><b>K à la position 1.</b> À t = 0 s, le condensateur est déchargé : q(0) = <span class="rv">0</span> et u<sub>C</sub>(0) = <span class="rv">0</span>.</p>
+  <div class="der" data-step>
+   <div>Loi d'additivité des tensions : E − u<sub>C</sub> − u<sub>R</sub> = 0</div>
+   <div>E = u<sub>C</sub> + u<sub>R</sub> = u<sub>C</sub> + R·i</div>
+   <div class="res">① &nbsp;<b>E = u<sub>C</sub> + RC·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span></b> &nbsp;⟹ équation différentielle de u<sub>C</sub></div>
+  </div>
+  <h4>b) Solution de l'équation différentielle</h4>
+  <p>La solution s'écrit sous la forme ② : <b>u<sub>C</sub>(t) = A + B·e<sup>−αt</sup></b>, avec A, B et α des constantes à déterminer.</p>
+  <div class="der" data-step>
+   <div>On remplace ② dans ① : E = A + B·e<sup>−αt</sup> + RC·<span class="fr"><span>d</span><span>dt</span></span>(A + B·e<sup>−αt</sup>)</div>
+   <div>E = A + B·e<sup>−αt</sup> + RC·(−α·B·e<sup>−αt</sup>)</div>
+   <div>E = A + B·e<sup>−αt</sup>·(1 − αRC)</div>
+   <div>Pour tout t : A = E &nbsp;et&nbsp; 1 − αRC = 0 ⟹ <b>A = E</b> ; <b>α = <span class="fr"><span>1</span><span>RC</span></span></b></div>
+   <div>Conditions initiales : u<sub>C</sub>(0) = 0 = A + B ⟹ <b>B = −A = −E</b></div>
+   <div class="res">⟹ <b>u<sub>C</sub>(t) = E·(1 − e<sup>−t/RC</sup>)</b></div>
+  </div>
+  <p>On visualise u<sub>C</sub> à l'oscilloscope (voie Y aux bornes du condensateur) : on observe un <b>régime transitoire</b> puis un <b>régime permanent</b> où u<sub>C</sub> = E.</p>
+  <h4>c) Expressions de q(t), u<sub>R</sub>(t) et i(t) — avec τ = RC</h4>
+  <p>On pose <b>τ = RC</b>, la constante de temps du dipôle RC. Connaissant u<sub>C</sub>(t), on déduit toutes les autres grandeurs du circuit : la charge par q = C·u<sub>C</sub>, l'intensité par i = C·du<sub>C</sub>/dt et la tension du conducteur ohmique par u<sub>R</sub> = R·i.</p>
+  <div class="sim">
+   <div class="sim-h"><b><i>Animation 4 :</i> Les 4 courbes de la charge (ou de la décharge) — curseur de temps</b><button class="btn o sm" id="cvM">Charge</button><button class="btn o sm" id="cvD">Décharge</button><button class="btn o sm zoomb">⤢ Agrandir</button></div>
+   <div class="stage"><canvas id="cv4"></canvas></div>
+   <div class="ctrl"><label>Instant t / τ <input type="range" id="c4t" min="0" max="5" step="0.01" value="1" style="width:220px"><b id="c4tv"></b></label><label><input type="checkbox" id="c4tg" checked> Tangentes à l'origine</label><button class="btn t sm" id="c4play">▶ Animer</button></div>
+   <div class="read" id="c4Read"></div>
+  </div>
+  <div class="grid2">
+   <div class="box"><span class="tag">Tension u<sub>C</sub>(t)</span><p>La tension aux bornes du condensateur, solution de l'équation différentielle, s'écrit :</p><div class="f">u<sub>C</sub>(t) = E(1 − e<sup>−t/τ</sup>)</div><p>À t = τ : u<sub>C</sub>(τ) = E(1 − e<sup>−1</sup>) = <span class="rv">0,63 E</span></p></div>
+   <div class="box"><span class="tag">Charge q(t) = C·u<sub>C</sub>(t)</span><p>La charge est proportionnelle à la tension : q(t) = C·u<sub>C</sub>(t) = C·E(1 − e<sup>−t/τ</sup>), soit :</p><div class="f">q(t) = CE(1 − e<sup>−t/τ</sup>)</div><p>q<sub>max</sub> = CE ; q(τ) = <span class="rv">0,63 CE</span></p></div>
+   <div class="box"><span class="tag">Intensité i(t) = C·du<sub>C</sub>/dt</span><p>On dérive u<sub>C</sub>(t) : i = C·<span class="fr"><span>d</span><span>dt</span></span>[E − E·e<sup>−t/τ</sup>] = C·<span class="fr"><span>E</span><span>τ</span></span>·e<sup>−t/τ</sup> = C·<span class="fr"><span>E</span><span>RC</span></span>·e<sup>−t/τ</sup>, d'où :</p><div class="f">i(t) = <span class="fr"><span>E</span><span>R</span></span>·e<sup>−t/τ</sup></div><p>i(0) = E/R ; i(τ) = <span class="rv">0,37 E/R</span></p></div>
+   <div class="box"><span class="tag">Tension u<sub>R</sub>(t) = R·i(t)</span><p>D'après la loi d'Ohm, u<sub>R</sub> = R·i = R·<span class="fr"><span>E</span><span>R</span></span>·e<sup>−t/τ</sup>, soit (on vérifie bien u<sub>C</sub> + u<sub>R</sub> = E) :</p><div class="f">u<sub>R</sub>(t) = E·e<sup>−t/τ</sup></div><p>u<sub>R</sub>(τ) = <span class="rv">0,37 E</span></p></div>
+  </div>
+  <h4>d) Unité de la constante de temps τ = RC</h4>
+  <p>Vérifions par une analyse dimensionnelle que la constante de temps τ = RC est homogène à un temps :</p>
+  <div class="der" data-step>
+   <div>[τ] = [R]·[C]</div>
+   <div>u<sub>R</sub> = R·i ⟹ [U] = [R]·[I] ⟹ [R] = <span class="fr"><span>[U]</span><span>[I]</span></span></div>
+   <div>i = C·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span> ⟹ [I] = [C]·<span class="fr"><span>[U]</span><span>[T]</span></span> ⟹ [C] = <span class="fr"><span>[I]·[T]</span><span>[U]</span></span></div>
+   <div>[τ] = <span class="fr"><span>[U]</span><span>[I]</span></span> × <span class="fr"><span>[I]·[T]</span><span>[U]</span></span></div>
+   <div class="res"><b>[τ] = [T]</b> ⟹ τ est homogène à un temps (en secondes).</div>
+  </div>
+
+  <h3>2) Réponse à un échelon descendant de tension (décharge du condensateur)</h3>
+  <h4>a) Équation différentielle</h4>
+  <p><b>K à la position 2.</b> À t = 0, le condensateur est chargé : u<sub>C</sub>(0) = <span class="rv">E</span> et q(0) = <span class="rv">CE</span>.</p>
+  <div class="der" data-step>
+   <div>Loi d'additivité des tensions : u<sub>C</sub> + u<sub>R</sub> = 0</div>
+   <div>u<sub>C</sub> + R·i = 0</div>
+   <div class="res"><b>u<sub>C</sub> + RC·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span> = 0</b> &nbsp;avec τ = RC</div>
+  </div>
+  <h4>b) Solution</h4>
+  <div class="der" data-step>
+   <div>u<sub>C</sub>(t) = A + B·e<sup>−αt</sup> ⟹ A + B·e<sup>−αt</sup>(1 − αRC) = 0</div>
+   <div>⟹ A = 0 &nbsp;et&nbsp; α = <span class="fr"><span>1</span><span>RC</span></span></div>
+   <div>À t = 0 : u<sub>C</sub>(0) = E = A + B ⟹ B = E</div>
+   <div class="res">⟹ <b>u<sub>C</sub>(t) = E·e<sup>−t/RC</sup></b></div>
+  </div>
+  <h4>c) Expressions de q(t), i(t) et u<sub>R</sub>(t)</h4>
+  <p>Comme pour la charge, on déduit les autres grandeurs à partir de u<sub>C</sub>(t) = E·e<sup>−t/τ</sup>.</p>
+  <div class="grid2">
+   <div class="box"><span class="tag">u<sub>C</sub> et q</span><p>La tension décroît de E vers 0 et la charge q = C·u<sub>C</sub> décroît de CE vers 0 :</p><div class="f">u<sub>C</sub> = E·e<sup>−t/τ</sup> ; q = CE·e<sup>−t/τ</sup></div><p>À t = τ : u<sub>C</sub> = <span class="rv">0,37 E</span> et q = <span class="rv">0,37 CE</span></p></div>
+   <div class="box"><span class="tag">i et u<sub>R</sub></span><p>On dérive : i = C·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span> = C·(−<span class="fr"><span>E</span><span>RC</span></span>)·e<sup>−t/τ</sup> ; puis u<sub>R</sub> = R·i (on vérifie u<sub>C</sub> + u<sub>R</sub> = 0) :</p><div class="f">i = −<span class="fr"><span>E</span><span>R</span></span>·e<sup>−t/τ</sup> ; u<sub>R</sub> = −E·e<sup>−t/τ</sup></div><p>i &lt; 0 : le courant circule dans le sens <span class="rv">opposé</span> à celui de la charge.</p></div>
+  </div>
+  <div class="note warn"><b>⚠ Attention :</b> pendant la décharge, à t = τ, q(τ) = <b>0,37 CE</b> (et non 0,67 CE) : il reste 37 % de la charge.</div>
+ </section>
+
+ <section class="ch">
+  <div class="ch-h"><div class="num">III</div><h2>L'énergie emmagasinée par le condensateur</h2><span class="sig">Pr Hicham MESBAH</span></div>
+  <p>Le condensateur reçoit de l'énergie pendant la charge et la restitue pendant la décharge. L'énergie électrique stockée par un condensateur de capacité C, soumis à la tension u<sub>C</sub>, est donnée par la relation suivante :</p>
+  <div class="box"><span class="tag">Énergie électrique</span><div class="f">E<sub>e</sub> = <span class="fr"><span>1</span><span>2</span></span>·C·u<sub>C</sub>² = <span class="fr"><span>1</span><span>2</span></span>·<span class="fr"><span>q²</span><span>C</span></span></div></div>
+  <p><b>Démonstration :</b> la puissance électrique reçue par le condensateur est p = u<sub>C</sub>·i.</p>
+  <div class="der" data-step>
+   <div>p = u<sub>C</sub>·i = u<sub>C</sub>·C·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span></div>
+   <div>Or <span class="fr"><span>d</span><span>dt</span></span>(<span class="fr"><span>1</span><span>2</span></span>C·u<sub>C</sub>²) = <span class="fr"><span>1</span><span>2</span></span>C·2u<sub>C</sub>·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span> = C·u<sub>C</sub>·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span> ⟹ p = <span class="fr"><span>dE<sub>e</sub></span><span>dt</span></span> avec E<sub>e</sub> = <span class="fr"><span>1</span><span>2</span></span>C·u<sub>C</sub>²</div>
+   <div>L'énergie reçue entre l'instant où u<sub>C</sub> = 0 (E<sub>e</sub> = 0) et l'instant t est donc E<sub>e</sub> = <span class="fr"><span>1</span><span>2</span></span>C·u<sub>C</sub>²</div>
+   <div class="res">Avec u<sub>C</sub> = <span class="fr"><span>q</span><span>C</span></span> : <b>E<sub>e</sub> = <span class="fr"><span>1</span><span>2</span></span>C·u<sub>C</sub>² = <span class="fr"><span>1</span><span>2</span></span>·<span class="fr"><span>q²</span><span>C</span></span></b> (en joules, J)</div>
+  </div>
+  <p>Dans le régime permanent (fin de la charge), la tension aux bornes du condensateur atteint sa valeur maximale u<sub>C</sub> = E : l'énergie stockée est alors maximale.</p>
+  <div class="box"><span class="tag">En régime permanent</span><div class="f">E<sub>e,max</sub> = <span class="fr"><span>1</span><span>2</span></span>·C·E² = <span class="fr"><span>1</span><span>2</span></span>·<span class="fr"><span>q<sub>max</sub>²</span><span>C</span></span></div><p>avec u<sub>C,max</sub> = E et q<sub>max</sub> = CE. (L'énergie est lue en direct dans l'animation 3.)</p></div>
+ </section>
+ <section class="ch"><div class="ch-h"><div class="num">✓</div><h2>Quiz — Dipôle RC (/20)</h2><span class="sig">Pr Hicham MESBAH</span></div><div class="quiz" data-q="rc"></div></section>
+ <div class="pager"><a href="#accueil">← Accueil</a><a class="n" href="#rl">Dipôle RL →</a></div>
+</div>
+
+<!-- ======================= RL ======================= -->
+<div class="chap" id="rl">
+ <div class="chead"><div><div class="k">Chapitre 2 · Électricité</div><h1>Le dipôle RL</h1></div><div class="s"><span class="mono"></span><span class="nm">Pr Hicham MESBAH</span></div></div>
+ <section class="ch">
+  <div class="ch-h"><div class="num">I</div><h2>La bobine</h2><span class="sig">Pr Hicham MESBAH</span></div>
+  <h3>1) Définition</h3>
+  <p>Une bobine est un dipôle passif ; elle est formée d'un <span class="rv">enroulement cylindrique</span> à spires jointives d'un fil électrique recouvert d'un isolant (vernis).</p>
+  <div class="sim">
+   <div class="sim-h"><b><i>Animation 1 :</i> La bobine réelle — enroulement, courant, champ magnétique et symboles</b><button class="btn t sm" id="bobI">▶ Faire passer le courant</button><button class="btn o sm zoomb">⤢ Agrandir</button></div>
+   <div class="stage"><canvas id="cvBob"></canvas></div>
+  </div>
+  <p>Une bobine est caractérisée par deux grandeurs : son inductance L et sa résistance interne r. En convention récepteur, la tension entre ses bornes est donnée par la relation suivante :</p>
+  <div class="box"><span class="tag">Tension aux bornes de la bobine (convention récepteur)</span><div class="f">u<sub>AB</sub> = u<sub>L</sub> = r·i + L·<span class="fr"><span>di</span><span>dt</span></span></div>
+   <ul><li>r : la <span class="rv">résistance interne</span> de la bobine (Ω) ;</li><li>L : l'<span class="rv">inductance</span> de la bobine, en <span class="rv">henry (H)</span>.</li></ul></div>
+  <div class="note"><b>Remarques :</b>
+   <ul><li>En régime permanent : i = cte ⟹ <span class="fr"><span>di</span><span>dt</span></span> = 0 ⟹ u<sub>L</sub> = r·i : la bobine se comporte comme un <b>conducteur ohmique</b> de résistance r.</li>
+   <li>Si r = 0, la bobine est <b>idéale</b> : u<sub>L</sub> = L·<span class="fr"><span>di</span><span>dt</span></span>.</li></ul></div>
+  <h3>2) Influence de la bobine dans le circuit</h3>
+  <p>Soit le montage expérimental suivant : une lampe L₁ est montée en série avec la bobine (L, r), et une lampe identique L₂ en série avec un conducteur ohmique de résistance R = r ; les deux branches sont en parallèle. On ferme puis on ouvre l'interrupteur K et on observe les deux lampes.</p>
+  <p><b>Observation :</b> à la fermeture de K, la lampe L₂ s'allume immédiatement alors que L₁ s'allume avec un <b>retard</b> ; à l'ouverture, L₁ s'éteint progressivement.</p>
+  <div class="sim">
+   <div class="sim-h"><b><i>Animation 2 :</i> Expérience des deux lampes — retard à l'allumage et à l'extinction</b><button class="btn t sm" id="lmpK">Fermer K</button><button class="btn o sm zoomb">⤢ Agrandir</button></div>
+   <div class="stage"><canvas id="cvLamp"></canvas></div>
+  </div>
+  <div class="box"><span class="tag">Conclusion</span><p>La bobine permet de <span class="rv">retarder</span> l'établissement ou la rupture (annulation) du courant.</p></div>
+ </section>
+
+ <section class="ch">
+  <div class="ch-h"><div class="num">II</div><h2>Réponse d'un dipôle RL à un échelon de tension</h2><span class="sig">Pr Hicham MESBAH</span></div>
+  <div class="sim">
+   <div class="sim-h"><b><i>Animation 3 :</i> Circuit RL (avec diode) et oscilloscope</b><button class="btn o sm zoomb">⤢ Agrandir</button></div>
+   <div class="stage"><canvas id="cvRL"></canvas></div>
+   <div class="ctrl"><button class="btn t" id="rlOn">Fermer K (échelon montant)</button><button class="btn v" id="rlOff">Ouvrir K (échelon descendant)</button><label><input type="checkbox" id="rlTau" checked> τ</label></div>
+   <div class="ctrl"><label>L <input type="range" id="rlL" min="0.1" max="1" step="0.05" value="0.5"><b id="rlLv"></b></label><label>R <input type="range" id="rlR" min="20" max="300" step="10" value="90"><b id="rlRv"></b></label><label>r <input type="range" id="rlr" min="0" max="50" step="5" value="10"><b id="rlrv"></b></label><label>E <input type="range" id="rlE" min="2" max="12" step="1" value="6"><b id="rlEv"></b></label></div>
+   <div class="read" id="rlRead"></div>
+  </div>
+  <h3>1) Réponse à un échelon montant de tension</h3>
+  <h4>a) Équation différentielle de i</h4>
+  <p>On ferme l'interrupteur K à t = 0 : le dipôle RL (conducteur ohmique R en série avec la bobine (L, r)) est soumis à l'échelon de tension E. Appliquons la loi d'additivité des tensions :</p>
+  <div class="der" data-step>
+   <div>Loi d'additivité des tensions : u<sub>R</sub> + u<sub>L</sub> = E</div>
+   <div>R·i + r·i + L·<span class="fr"><span>di</span><span>dt</span></span> = E</div>
+   <div>(R + r)·i + L·<span class="fr"><span>di</span><span>dt</span></span> = E</div>
+   <div class="res">① &nbsp;<b>i + <span class="fr"><span>L</span><span>R + r</span></span>·<span class="fr"><span>di</span><span>dt</span></span> = <span class="fr"><span>E</span><span>R + r</span></span></b> &nbsp;avec <b>τ = <span class="fr"><span>L</span><span>R + r</span></span></b></div>
+  </div>
+  <div class="note warn"><b>⚠ Attention :</b> u<sub>L</sub> = r·i + L·di/dt : la deuxième résistance est la résistance <b>interne r</b> de la bobine (R·i + <b>r</b>·i, et non R·i + R·i).</div>
+  <h4>b) Solution de l'équation différentielle de i</h4>
+  <p>La solution s'écrit sous la forme ② : <b>i(t) = A + B·e<sup>−αt</sup></b>.</p>
+  <div class="der" data-step>
+   <div>On remplace ② dans ① : A + B·e<sup>−αt</sup> + <span class="fr"><span>L</span><span>R + r</span></span>·(−αB·e<sup>−αt</sup>) = <span class="fr"><span>E</span><span>R + r</span></span></div>
+   <div>A + B·e<sup>−αt</sup>·(1 − <span class="fr"><span>Lα</span><span>R + r</span></span>) = <span class="fr"><span>E</span><span>R + r</span></span></div>
+   <div>⟹ <b>A = <span class="fr"><span>E</span><span>R + r</span></span></b> &nbsp;et&nbsp; <b>α = <span class="fr"><span>R + r</span><span>L</span></span> = <span class="fr"><span>1</span><span>τ</span></span></b></div>
+   <div>À t = 0 : i(0) = 0 = <span class="fr"><span>E</span><span>R + r</span></span> + B ⟹ <b>B = −<span class="fr"><span>E</span><span>R + r</span></span></b></div>
+   <div class="res">D'où : <b>i(t) = <span class="fr"><span>E</span><span>R + r</span></span>·(1 − e<sup>−t/τ</sup>)</b> &nbsp;; en régime permanent I<sub>0</sub> = I<sub>p</sub> = <span class="fr"><span>E</span><span>R + r</span></span></div>
+  </div>
+  <h4>c) Expressions de u<sub>R</sub>(t) et u<sub>L</sub>(t)</h4>
+  <p>Connaissant i(t) = <span class="fr"><span>E</span><span>R + r</span></span>(1 − e<sup>−t/τ</sup>), on déduit la tension aux bornes du conducteur ohmique (loi d'Ohm) puis celle de la bobine (loi d'additivité des tensions).</p>
+  <div class="sim">
+   <div class="sim-h"><b><i>Animation 4 :</i> Courbes i, u<sub>R</sub>, u<sub>L</sub> — cas r = 0 et r ≠ 0</b><button class="btn o sm" id="l4M">Échelon montant</button><button class="btn o sm" id="l4D">Échelon descendant</button><button class="btn o sm zoomb">⤢ Agrandir</button></div>
+   <div class="stage"><canvas id="cvL4"></canvas></div>
+   <div class="ctrl"><label>r / (R + r) <input type="range" id="l4r" min="0" max="0.5" step="0.05" value="0.2"><b id="l4rv"></b></label><label>Instant t / τ <input type="range" id="l4t" min="0" max="5" step="0.01" value="1"><b id="l4tv"></b></label><button class="btn t sm" id="l4play">▶ Animer</button></div>
+   <div class="read" id="l4Read"></div>
+  </div>
+  <div class="grid2">
+   <div class="box"><span class="tag">u<sub>R</sub>(t) = R·i(t)</span><p>D'après la loi d'Ohm, u<sub>R</sub>(t) = R·i(t) = R·<span class="fr"><span>E</span><span>R + r</span></span>(1 − e<sup>−t/τ</sup>), soit :</p><div class="f">u<sub>R</sub> = <span class="fr"><span>RE</span><span>R + r</span></span>(1 − e<sup>−t/τ</sup>)</div><p>u<sub>R</sub>(τ) = <span class="rv">0,63 U<sub>max</sub></span></p></div>
+   <div class="box"><span class="tag">u<sub>L</sub> = E − u<sub>R</sub></span><p>D'après la loi d'additivité des tensions u<sub>L</sub> + u<sub>R</sub> = E, donc u<sub>L</sub> = E − R·i :</p><div class="f">u<sub>L</sub> = E − <span class="fr"><span>RE</span><span>R + r</span></span>(1 − e<sup>−t/τ</sup>)</div>
+    <p><b>Cas 1 : r = 0</b> (bobine idéale, τ = L/R) : u<sub>L</sub> = E − E(1 − e<sup>−t/τ</sup>) = E − E + E·e<sup>−t/τ</sup>, donc u<sub>L</sub> = E·e<sup>−t/τ</sup> → tend vers <span class="rv">0</span>.<br><b>Cas 2 : r ≠ 0</b> (τ = L/(R + r)) : à t = 0, u<sub>L</sub>(0) = E ; quand t → ∞, e<sup>−t/τ</sup> → 0 et u<sub>L</sub>(∞) = E − <span class="fr"><span>RE</span><span>R + r</span></span> = <span class="rv"><span class="fr"><span>rE</span><span>R + r</span></span></span>.</p></div>
+  </div>
+  <h4>d) Unité de la constante de temps τ = L/(R + r)</h4>
+  <p>Vérifions par une analyse dimensionnelle que τ = L/(R + r) est homogène à un temps :</p>
+  <div class="der" data-step>
+   <div>[τ] = <span class="fr"><span>[L]</span><span>[R]</span></span></div>
+   <div>u<sub>L</sub> = L·<span class="fr"><span>di</span><span>dt</span></span> ⟹ [U] = <span class="fr"><span>[L]·[I]</span><span>[T]</span></span> ⟹ [L] = <span class="fr"><span>[U]·[T]</span><span>[I]</span></span></div>
+   <div>u<sub>R</sub> = R·i ⟹ [R] = <span class="fr"><span>[U]</span><span>[I]</span></span></div>
+   <div class="res">[τ] = <span class="fr"><span>[U]·[T]/[I]</span><span>[U]/[I]</span></span> = <b>[T]</b> : τ est homogène à un temps.</div>
+  </div>
+
+  <h3>2) Réponse à un échelon descendant de tension</h3>
+  <h4>a) Équation différentielle de i</h4>
+  <p>On ouvre l'interrupteur K : le générateur n'alimente plus le circuit, et le courant qui circulait dans la bobine continue à circuler à travers la diode et le conducteur ohmique avant de s'annuler.</p>
+  <div class="note"><b>Rôle de la diode :</b> éviter l'apparition d'étincelles aux bornes de la bobine (éviter la <b>surtension</b>) lorsqu'on ouvre K : le courant continue à circuler à travers la diode.</div>
+  <div class="der" data-step>
+   <div>Loi d'additivité des tensions : u<sub>L</sub> + u<sub>R</sub> = 0</div>
+   <div>r·i + L·<span class="fr"><span>di</span><span>dt</span></span> + R·i = 0 ⟹ (R + r)·i + L·<span class="fr"><span>di</span><span>dt</span></span> = 0</div>
+   <div class="res"><b>i + <span class="fr"><span>L</span><span>R + r</span></span>·<span class="fr"><span>di</span><span>dt</span></span> = 0</b></div>
+  </div>
+  <h4>b) Solution</h4>
+  <div class="der" data-step>
+   <div>i(t) = A + B·e<sup>−αt</sup> ⟹ A + B·e<sup>−αt</sup>(1 − <span class="fr"><span>L</span><span>R + r</span></span>α) = 0 ⟹ A = 0 ; α = <span class="fr"><span>R + r</span><span>L</span></span> = <span class="fr"><span>1</span><span>τ</span></span></div>
+   <div>À t = 0 : i(0) = <span class="fr"><span>E</span><span>R + r</span></span> = A + B ⟹ B = <span class="fr"><span>E</span><span>R + r</span></span></div>
+   <div class="res"><b>i(t) = <span class="fr"><span>E</span><span>R + r</span></span>·e<sup>−t/τ</sup></b></div>
+  </div>
+  <h4>c) Expressions de u<sub>R</sub>(t) et u<sub>L</sub>(t)</h4>
+  <p>À partir de i(t) = <span class="fr"><span>E</span><span>R + r</span></span>·e<sup>−t/τ</sup>, on obtient :</p>
+  <div class="grid2">
+   <div class="box"><span class="tag">u<sub>R</sub></span><p>D'après la loi d'Ohm :</p><div class="f">u<sub>R</sub> = R·i = <span class="fr"><span>RE</span><span>R + r</span></span>·e<sup>−t/τ</sup></div></div>
+   <div class="box"><span class="tag">u<sub>L</sub> = −u<sub>R</sub></span><p>D'après la loi d'additivité des tensions u<sub>L</sub> + u<sub>R</sub> = 0, donc u<sub>L</sub> = −u<sub>R</sub> = −R·i :</p><div class="f">u<sub>L</sub> = −<span class="fr"><span>RE</span><span>R + r</span></span>·e<sup>−t/τ</sup></div><p>Si r = 0 : u<sub>L</sub> = −E·e<sup>−t/τ</sup> (part de −E).</p></div>
+  </div>
+ </section>
+
+ <section class="ch">
+  <div class="ch-h"><div class="num">III</div><h2>L'énergie emmagasinée dans une bobine</h2><span class="sig">Pr Hicham MESBAH</span></div>
+  <p>Lorsqu'un courant traverse la bobine, celle-ci emmagasine de l'énergie sous forme magnétique. L'énergie magnétique emmagasinée dans une bobine d'inductance L, traversée par un courant d'intensité i, est donnée par la relation suivante :</p>
+  <div class="box"><span class="tag">Énergie magnétique</span><div class="f">E<sub>m</sub>(t) = <span class="fr"><span>1</span><span>2</span></span>·L·i²(t)</div></div>
+  <p><b>Démonstration</b> (pour une bobine idéale, r = 0) : la puissance reçue par la bobine est p = u<sub>L</sub>·i.</p>
+  <div class="der" data-step>
+   <div>p = u<sub>L</sub>·i = L·<span class="fr"><span>di</span><span>dt</span></span>·i</div>
+   <div>Or <span class="fr"><span>d</span><span>dt</span></span>(<span class="fr"><span>1</span><span>2</span></span>L·i²) = <span class="fr"><span>1</span><span>2</span></span>L·2i·<span class="fr"><span>di</span><span>dt</span></span> = L·i·<span class="fr"><span>di</span><span>dt</span></span> ⟹ p = <span class="fr"><span>dE<sub>m</sub></span><span>dt</span></span></div>
+   <div class="res">L'énergie reçue depuis i = 0 (E<sub>m</sub> = 0) vaut : <b>E<sub>m</sub> = <span class="fr"><span>1</span><span>2</span></span>L·i²</b> (en joules, J)</div>
+  </div>
+  <div class="note">Si r ≠ 0, la puissance r·i² reçue en plus est dissipée par effet Joule : elle n'est pas stockée.</div>
+  <p>Dans le régime permanent, l'intensité atteint sa valeur maximale I<sub>p</sub> : l'énergie magnétique est alors maximale.</p>
+  <div class="box"><span class="tag">En régime permanent</span><div class="f">E<sub>m</sub> = <span class="fr"><span>1</span><span>2</span></span>·L·I<sub>p</sub>² &nbsp;avec&nbsp; I<sub>p</sub> = <span class="fr"><span>E</span><span>R + r</span></span></div><p>(Valeur lue en direct dans l'animation 3.)</p></div>
+ </section>
+ <section class="ch"><div class="ch-h"><div class="num">✓</div><h2>Quiz — Dipôle RL (/20)</h2><span class="sig">Pr Hicham MESBAH</span></div><div class="quiz" data-q="rl"></div></section>
+ <div class="pager"><a href="#rc">← Dipôle RC</a><a class="n" href="#rlc">Oscillations RLC →</a></div>
+</div>
+
+<!-- ======================= RLC ======================= -->
+<div class="chap" id="rlc">
+ <div class="chead"><div><div class="k">Chapitre 3 · Électricité</div><h1>Oscillations libres dans un circuit RLC série</h1></div><div class="s"><span class="mono"></span><span class="nm">Pr Hicham MESBAH</span></div></div>
+ <section class="ch">
+  <div class="ch-h"><div class="num">I</div><h2>Décharge d'un condensateur dans une bobine</h2><span class="sig">Pr Hicham MESBAH</span></div>
+  <p>On place l'interrupteur K sur la position 1 : le condensateur se charge. Puis on bascule K sur la position 2 : le condensateur se décharge dans la bobine (L, r) et le conducteur ohmique de résistance R. Selon la valeur de la résistance totale du circuit <b>R<sub>T</sub> = R + r</b>, on observe à l'oscilloscope les régimes suivants :</p>
+  <div class="sim">
+   <div class="sim-h"><b><i>Animation 1 :</i> Les quatre régimes — choisis R<sub>T</sub></b><button class="btn o sm zoomb">⤢ Agrandir</button></div>
+   <div class="stage"><canvas id="cvReg"></canvas></div>
+   <div class="ctrl"><label>R<sub>T</sub> <input type="range" id="rgR" min="0" max="1500" step="5" value="60" style="width:240px"><b id="rgRv"></b></label><button class="btn o sm rgp" data-r="0">R<sub>T</sub> = 0</button><button class="btn o sm rgp" data-r="60">faible</button><button class="btn o sm rgp" data-r="crit">= R<sub>c</sub></button><button class="btn o sm rgp" data-r="1500">très grande</button></div>
+   <div class="read" id="rgRead"></div>
+  </div>
+  <div class="tw"><table class="t">
+   <tr><th>R<sub>T</sub> = 0</th><th>R<sub>T</sub> faible</th><th>R<sub>T</sub> = R<sub>c</sub></th><th>R<sub>T</sub> &gt; R<sub>c</sub> (très grande)</th></tr>
+   <tr><td>Régime <span class="rv">périodique</span></td><td>Régime <span class="rv">pseudo-périodique</span></td><td>Régime <span class="rv">critique</span></td><td>Régime <span class="rv">apériodique</span></td></tr>
+   <tr><td>T<sub>0</sub> : la période propre</td><td>T : la pseudo-période, T ≈ T<sub>0</sub></td><td>R<sub>c</sub> = 2<span class="sq">√</span>(L/C) : la résistance critique ; retour à 0 <b>sans oscillation</b>, le plus rapide</td><td>retour lent à 0 sans oscillation</td></tr>
+  </table></div>
+  <div class="note warn"><b>⚠ Attention :</b> au régime critique, u<sub>C</sub> revient à zéro <b>sans osciller</b> (aucune oscillation, même petite). Le régime apériodique correspond à R<sub>T</sub> &gt; R<sub>c</sub>.</div>
+ </section>
+
+ <section class="ch">
+  <div class="ch-h"><div class="num">II</div><h2>Étude analytique d'un circuit oscillant</h2><span class="sig">Pr Hicham MESBAH</span></div>
+  <h3>1) Équation différentielle d'un circuit RLC série</h3>
+  <p>Après avoir basculé K en position 2, le condensateur chargé se décharge dans la bobine (L, r) et le conducteur ohmique R montés en série. Appliquons la loi d'additivité des tensions :</p>
+  <div class="der" data-step>
+   <div>Loi d'additivité des tensions : u<sub>C</sub> + u<sub>R</sub> + u<sub>L</sub> = 0</div>
+   <div>u<sub>C</sub> + R·i + r·i + L·<span class="fr"><span>di</span><span>dt</span></span> = 0 ⟹ u<sub>C</sub> + (R + r)·i + L·<span class="fr"><span>di</span><span>dt</span></span> = 0</div>
+   <div>avec i = C·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span> et <span class="fr"><span>di</span><span>dt</span></span> = C·<span class="fr"><span>d²u<sub>C</sub></span><span>dt²</span></span> : u<sub>C</sub> + (R + r)C·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span> + LC·<span class="fr"><span>d²u<sub>C</sub></span><span>dt²</span></span> = 0</div>
+   <div class="res"><b><span class="fr"><span>d²u<sub>C</sub></span><span>dt²</span></span> + <span class="fr"><span>R + r</span><span>L</span></span>·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span> + <span class="fr"><span>1</span><span>LC</span></span>·u<sub>C</sub> = 0</b></div>
+  </div>
+  <h3>2) Circuit LC idéal</h3>
+  <h4>a) Équation différentielle de u<sub>C</sub></h4>
+  <p>Dans un circuit LC idéal, la résistance totale est nulle (R + r = 0) : le circuit ne comporte que le condensateur et la bobine. La loi d'additivité des tensions donne :</p>
+  <div class="der" data-step>
+   <div>u<sub>C</sub> + u<sub>L</sub> = 0 ⟹ u<sub>C</sub> + L·<span class="fr"><span>di</span><span>dt</span></span> = 0</div>
+   <div>u<sub>C</sub> + LC·<span class="fr"><span>d²u<sub>C</sub></span><span>dt²</span></span> = 0 &nbsp;(on divise par LC)</div>
+   <div class="res"><b><span class="fr"><span>d²u<sub>C</sub></span><span>dt²</span></span> + <span class="fr"><span>1</span><span>LC</span></span>·u<sub>C</sub> = 0</b></div>
+  </div>
+  <h4>b) Solution de l'équation différentielle</h4>
+  <p>L'équation différentielle du circuit LC admet une solution sinusoïdale : la tension u<sub>C</sub> oscille sans amortissement. Elle s'écrit sous la forme :</p>
+  <div class="box"><span class="tag">Solution</span><div class="f">u<sub>C</sub>(t) = U<sub>m</sub>·cos(<span class="fr"><span>2π</span><span>T<sub>0</sub></span></span>t + φ) = U<sub>m</sub>·cos(ω<sub>0</sub>t + φ)</div>
+   <p>U<sub>m</sub> : valeur maximale de u<sub>C</sub> ; T<sub>0</sub> : la <span class="rv">période propre</span> ; ω<sub>0</sub> = 2π/T<sub>0</sub> : la <span class="rv">pulsation propre</span> ; φ : la <span class="rv">phase à t = 0</span>.</p></div>
+  <p><b>Détermination de T<sub>0</sub> :</b> on dérive deux fois la solution, puis on la remplace dans l'équation différentielle.</p>
+  <div class="der" data-step>
+   <div><span class="fr"><span>du<sub>C</sub></span><span>dt</span></span> = −U<sub>m</sub>·<span class="fr"><span>2π</span><span>T<sub>0</sub></span></span>·sin(<span class="fr"><span>2π</span><span>T<sub>0</sub></span></span>t + φ)</div>
+   <div><span class="fr"><span>d²u<sub>C</sub></span><span>dt²</span></span> = −(<span class="fr"><span>2π</span><span>T<sub>0</sub></span></span>)²·U<sub>m</sub>·cos(…) = −(<span class="fr"><span>2π</span><span>T<sub>0</sub></span></span>)²·u<sub>C</sub>(t)</div>
+   <div>⟹ <span class="fr"><span>d²u<sub>C</sub></span><span>dt²</span></span> + (<span class="fr"><span>2π</span><span>T<sub>0</sub></span></span>)²·u<sub>C</sub> = 0 ; en comparant avec l'équation différentielle : <span class="fr"><span>1</span><span>LC</span></span> = (<span class="fr"><span>2π</span><span>T<sub>0</sub></span></span>)²</div>
+   <div class="res"><b>T<sub>0</sub> = 2π<span class="sq">√</span>(LC)</b></div>
+  </div>
+  <p><b>Détermination de φ et U<sub>m</sub> :</b> à t = 0 le condensateur est chargé.</p>
+  <div class="der" data-step>
+   <div>u<sub>C</sub>(0) = E ⟹ U<sub>m</sub>·cos φ = E ⟹ cos φ = <span class="fr"><span>E</span><span>U<sub>m</sub></span></span> &gt; 0</div>
+   <div>i(0) = 0 avec i = −C·U<sub>m</sub>·<span class="fr"><span>2π</span><span>T<sub>0</sub></span></span>·sin(<span class="fr"><span>2π</span><span>T<sub>0</sub></span></span>t + φ) ⟹ sin φ = 0 ⟹ φ = 0 ou φ = π</div>
+   <div>Puisque cos φ &gt; 0 : <b>φ = 0</b></div>
+   <div class="res">⟹ cos 0 = 1 = E/U<sub>m</sub> ⟹ <b>U<sub>m</sub> = E</b></div>
+  </div>
+  <p><b>Dimension de T<sub>0</sub> :</b> vérifions que la période propre T<sub>0</sub> = 2π√(LC) est bien homogène à un temps.</p>
+  <div class="der" data-step>
+   <div>[T<sub>0</sub>] = ([L]·[C])<sup>1/2</sup> avec [L] = <span class="fr"><span>[U]·[T]</span><span>[I]</span></span> et [C] = <span class="fr"><span>[I]·[T]</span><span>[U]</span></span></div>
+   <div class="res">[T<sub>0</sub>] = ([T]²)<sup>1/2</sup> = <b>[T]</b> : T<sub>0</sub> est homogène à un temps.</div>
+  </div>
+  <h3>3) Expressions de q(t) et i(t)</h3>
+  <p>À partir de u<sub>C</sub>(t), on déduit la charge du condensateur et l'intensité du courant dans le circuit.</p>
+  <div class="grid2">
+   <div class="box"><span class="tag">Charge</span><p>La charge est proportionnelle à la tension : q(t) = C·u<sub>C</sub>(t), donc :</p><div class="f">q(t) = C·U<sub>m</sub>·cos(<span class="fr"><span>2π</span><span>T<sub>0</sub></span></span>t + φ)</div><p>q<sub>max</sub> = C·U<sub>m</sub></p></div>
+   <div class="box"><span class="tag">Intensité</span><p>L'intensité est la dérivée de la charge : i(t) = <span class="fr"><span>dq</span><span>dt</span></span> = C·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span>, donc :</p><div class="f">i(t) = −C·U<sub>m</sub>·<span class="fr"><span>2π</span><span>T<sub>0</sub></span></span>·sin(<span class="fr"><span>2π</span><span>T<sub>0</sub></span></span>t + φ)</div><p>Son amplitude est I<sub>max</sub> = C·U<sub>m</sub>·<span class="fr"><span>2π</span><span>T<sub>0</sub></span></span> ; avec T<sub>0</sub> = 2π√(LC) : I<sub>max</sub> = C·U<sub>m</sub>·<span class="fr"><span>1</span><span>√(LC)</span></span> = U<sub>m</sub>·<span class="sq">√</span>(C/L) = <span class="rv">E·√(C/L)</span></p></div>
+  </div>
+ </section>
+
+ <section class="ch">
+  <div class="ch-h"><div class="num">III</div><h2>Transfert d'énergie entre la bobine et le condensateur</h2><span class="sig">Pr Hicham MESBAH</span></div>
+  <h3>1) Expression de l'énergie totale dans un circuit LC</h3>
+  <p>À chaque instant, l'énergie totale E<sub>T</sub> du circuit est la somme de l'énergie électrique E<sub>e</sub> stockée dans le condensateur et de l'énergie magnétique E<sub>m</sub> stockée dans la bobine. Montrons qu'elle reste constante :</p>
+  <div class="der" data-step>
+   <div>E<sub>T</sub> = E<sub>e</sub> + E<sub>m</sub> = <span class="fr"><span>1</span><span>2</span></span>C·u<sub>C</sub>² + <span class="fr"><span>1</span><span>2</span></span>L·i²</div>
+   <div>E<sub>T</sub> = <span class="fr"><span>1</span><span>2</span></span>C·U<sub>m</sub>²·cos²(…) + <span class="fr"><span>1</span><span>2</span></span>L·C²·U<sub>m</sub>²·(<span class="fr"><span>2π</span><span>T<sub>0</sub></span></span>)²·sin²(…)</div>
+   <div>Or (<span class="fr"><span>2π</span><span>T<sub>0</sub></span></span>)² = <span class="fr"><span>1</span><span>LC</span></span> ⟹ E<sub>T</sub> = <span class="fr"><span>1</span><span>2</span></span>C·U<sub>m</sub>²·(cos²(…) + sin²(…))</div>
+   <div class="res"><b>E<sub>T</sub> = <span class="fr"><span>1</span><span>2</span></span>C·U<sub>m</sub>² = <span class="fr"><span>1</span><span>2</span></span>L·I<sub>max</sub>² = constante</b> : l'énergie totale se conserve.</div>
+  </div>
+  <div class="sim">
+   <div class="sim-h"><b><i>Animation 2 :</i> Énergies E<sub>e</sub>, E<sub>m</sub> et E<sub>T</sub> — circuit LC idéal ou RLC</b><button class="btn o sm" id="enLC">LC idéal</button><button class="btn o sm" id="enRLC">RLC (amorti)</button><button class="btn o sm zoomb">⤢ Agrandir</button></div>
+   <div class="stage"><canvas id="cvEn"></canvas></div>
+   <div class="ctrl"><label>Instant t / T<sub>0</sub> <input type="range" id="ent" min="0" max="4" step="0.005" value="0" style="width:240px"><b id="entv"></b></label><button class="btn t sm" id="enPlay">▶ Animer</button><label>R<sub>T</sub> (RLC) <input type="range" id="enR" min="5" max="150" step="5" value="40"><b id="enRv"></b></label></div>
+   <div class="read" id="enRead"></div>
+  </div>
+  <p>À t = 0 le condensateur est chargé : u<sub>C</sub>(0) = E ⟹ E<sub>e</sub> = E<sub>e,max</sub> et E<sub>m</sub> = 0. Les énergies E<sub>e</sub> et E<sub>m</sub> s'échangent avec la <b>période énergétique T<sub>e</sub> = <span class="rv">T<sub>0</sub>/2</span></b>.</p>
+  <h3>2) Détermination de l'équation différentielle par l'étude énergétique</h3>
+  <p>On peut retrouver l'équation différentielle du circuit LC à partir de la conservation de l'énergie totale :</p>
+  <div class="der" data-step>
+   <div>E<sub>T</sub> = cte ⟹ <span class="fr"><span>dE<sub>T</sub></span><span>dt</span></span> = 0 ⟹ <span class="fr"><span>d</span><span>dt</span></span>(<span class="fr"><span>1</span><span>2</span></span>C·u<sub>C</sub>² + <span class="fr"><span>1</span><span>2</span></span>L·i²) = 0</div>
+   <div>C·u<sub>C</sub>·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span> + L·i·<span class="fr"><span>di</span><span>dt</span></span> = 0 avec i = C·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span> et <span class="fr"><span>di</span><span>dt</span></span> = C·<span class="fr"><span>d²u<sub>C</sub></span><span>dt²</span></span></div>
+   <div>C·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span>·(u<sub>C</sub> + LC·<span class="fr"><span>d²u<sub>C</sub></span><span>dt²</span></span>) = 0 ; or <span class="fr"><span>du<sub>C</sub></span><span>dt</span></span> n'est pas toujours nul</div>
+   <div class="res">⟹ <b><span class="fr"><span>d²u<sub>C</sub></span><span>dt²</span></span> + <span class="fr"><span>1</span><span>LC</span></span>·u<sub>C</sub> = 0</b></div>
+  </div>
+  <h3>3) Énergie totale du circuit RLC série</h3>
+  <p>Dans un circuit RLC, on calcule de la même façon la dérivée de l'énergie totale E<sub>T</sub> = E<sub>e</sub> + E<sub>m</sub>, puis on utilise l'équation différentielle du circuit RLC :</p>
+  <div class="der" data-step>
+   <div><span class="fr"><span>dE<sub>T</sub></span><span>dt</span></span> = C·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span>·(u<sub>C</sub> + LC·<span class="fr"><span>d²u<sub>C</sub></span><span>dt²</span></span>) = LC·C·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span>·(<span class="fr"><span>1</span><span>LC</span></span>u<sub>C</sub> + <span class="fr"><span>d²u<sub>C</sub></span><span>dt²</span></span>)</div>
+   <div>D'après l'équation RLC : <span class="fr"><span>d²u<sub>C</sub></span><span>dt²</span></span> + <span class="fr"><span>1</span><span>LC</span></span>u<sub>C</sub> = −<span class="fr"><span>R + r</span><span>L</span></span>·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span></div>
+   <div><span class="fr"><span>dE<sub>T</sub></span><span>dt</span></span> = −(R + r)·C²·(<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span>)²</div>
+   <div class="res"><b><span class="fr"><span>dE<sub>T</sub></span><span>dt</span></span> = −(R + r)·i² &lt; 0</b> : l'énergie totale est <span class="rv">décroissante</span>.</div>
+  </div>
+  <div class="box"><span class="tag">Énergie dissipée entre t₁ et t₂</span><div class="f">ΔE<sub>T</sub> = E<sub>T</sub>(t₂) − E<sub>T</sub>(t₁)</div>
+   <p>Astuce : si on choisit t₁ et t₂ aux instants où <b>i = 0</b> (extremums de u<sub>C</sub>), alors E<sub>m</sub> = 0 et ΔE<sub>T</sub> = E<sub>e</sub>(t₂) − E<sub>e</sub>(t₁) = <span class="fr"><span>1</span><span>2</span></span>C(u<sub>C</sub>(t₂)² − u<sub>C</sub>(t₁)²) &lt; 0.</p></div>
+  <p>L'énergie totale du circuit RLC décroît en fonction du temps et les oscillations sont <b>amorties</b> à cause de la perte d'énergie par <span class="rv">effet Joule</span> au niveau de la résistance.</p>
+ </section>
+
+ <section class="ch">
+  <div class="ch-h"><div class="num">IV</div><h2>Entretien des oscillations</h2><span class="sig">Pr Hicham MESBAH</span></div>
+  <p>Pour entretenir les oscillations d'un circuit RLC libre, il faut <b>compenser les pertes par effet Joule</b> : on monte en série avec le circuit RLC un générateur G qui délivre une tension proportionnelle à l'intensité du courant : <b>u<sub>G</sub> = k·i</b>.</p>
+  <div class="der" data-step>
+   <div>u<sub>G</sub> = u<sub>C</sub> + u<sub>L</sub> + u<sub>R</sub></div>
+   <div>k·i = u<sub>C</sub> + r·i + L·<span class="fr"><span>di</span><span>dt</span></span> + R·i</div>
+   <div>u<sub>C</sub> + (R + r − k)·i + L·<span class="fr"><span>di</span><span>dt</span></span> = 0 ⟹ u<sub>C</sub> + (R + r − k)C·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span> + LC·<span class="fr"><span>d²u<sub>C</sub></span><span>dt²</span></span> = 0</div>
+   <div class="res"><b><span class="fr"><span>d²u<sub>C</sub></span><span>dt²</span></span> + <span class="fr"><span>R + r − k</span><span>L</span></span>·<span class="fr"><span>du<sub>C</sub></span><span>dt</span></span> + <span class="fr"><span>1</span><span>LC</span></span>·u<sub>C</sub> = 0</b></div>
+  </div>
+  <div class="box"><span class="tag">Condition d'entretien</span><p>Pour avoir des oscillations non amorties, il faut : R + r − k = 0 ⟺ <b>k = <span class="rv">R + r</span></b>. Le circuit oscille alors avec la période propre T<sub>0</sub> = 2π√(LC).</p></div>
+  <div class="sim">
+   <div class="sim-h"><b><i>Animation 3 :</i> Entretien des oscillations — règle k</b><button class="btn t sm" id="ekGo">▶ Relancer</button><button class="btn o sm zoomb">⤢ Agrandir</button></div>
+   <div class="stage"><canvas id="cvEk"></canvas></div>
+   <div class="ctrl"><label>k <input type="range" id="ekK" min="0" max="120" step="1" value="40" style="width:240px"><b id="ekKv"></b></label><span>R + r = <b>80 Ω</b></span><button class="btn o sm" id="ekOk">k = R + r</button></div>
+   <div class="read" id="ekRead"></div>
+  </div>
+ </section>
+ <section class="ch"><div class="ch-h"><div class="num">✓</div><h2>Quiz — Oscillations libres RLC (/20)</h2><span class="sig">Pr Hicham MESBAH</span></div><div class="quiz" data-q="rlc"></div></section>
+ <div class="pager"><a href="#rl">← Dipôle RL</a><a class="n" href="#accueil">Accueil →</a></div>
+</div>
+</main>
+
+<footer><span class="nm">Pr Hicham MESBAH</span><span class="dr">Docteur en Électronique, Traitement du signal et Contrôle non destructif</span>Physique-Chimie · 2BAC PC · Électricité : RC, RL, RLC libre · 2026/2027</footer>
+<script>
+"use strict";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const SIGN='Pr Hicham MESBAH';
+const fmt=(x,d=2)=>(Math.abs(x)<1e-12?0:x).toFixed(d).replace('.',',');
+function sci(x,d=2){if(x===0)return'0';const e=Math.floor(Math.log10(Math.abs(x)));const m=x/Math.pow(10,e);const sup={'-':'⁻','0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'};return fmt(m,d)+'×10'+String(e).split('').map(c=>sup[c]).join('')}
+
+/* ---------- Navigation par chapitre ---------- */
+const CH=['accueil','rc','rl','rlc'];
+const SIMS={};function reg(ch,f){(SIMS[ch]=SIMS[ch]||[]).push(f)}
+function curCh(){const h=location.hash.slice(1);return CH.includes(h)?h:'accueil'}
+function show(){const id=curCh();$$('.chap').forEach(c=>c.classList.toggle('on',c.id===id));$$('#nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+id));window.scrollTo(0,0);requestAnimationFrame(()=>redraw(id))}
+function redraw(id){(SIMS[id||curCh()]||[]).forEach(f=>{try{f()}catch(e){console.error(e)}})}
+window.addEventListener('hashchange',show);
+$$('.rv').forEach(e=>e.addEventListener('click',()=>e.classList.toggle('on')));
+let allOn=false;
+$('#revealAll').onclick=()=>{allOn=!allOn;$$('.rv').forEach(e=>e.classList.toggle('on',allOn));$('#revealAll').textContent=allOn?'✦ Tout masquer':'✦ Tout révéler'};
+$('#fs').onclick=()=>{try{const d=document,el=d.documentElement;if(!d.fullscreenElement){const p=(el.requestFullscreen||el.webkitRequestFullscreen).call(el);if(p&&p.catch)p.catch(()=>{})}else d.exitFullscreen()}catch(e){}};
+window.addEventListener('scroll',()=>{const h=document.documentElement;$('#prog').style.width=(100*h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight))+'%'},{passive:true});
+$$('.zoomb').forEach(b=>b.onclick=()=>{const s=b.closest('.sim');const z=s.classList.toggle('zoom');b.textContent=z?'✕ Réduire':'⤢ Agrandir';document.body.style.overflow=z?'hidden':'';redraw()});
+window.addEventListener('resize',()=>{clearTimeout(window._rt);window._rt=setTimeout(()=>redraw(),120)});
+
+/* ---------- Outils de dessin ---------- */
+const DPR=Math.min(window.devicePixelRatio||1,2);
+function fit(cv,r,rn){const w=cv.parentElement.clientWidth||600;const ratio=w<640?(rn||r*1.4):r;const h=Math.round(w*ratio);if(cv._w!==w||cv._h!==h){cv.width=Math.round(w*DPR);cv.height=Math.round(h*DPR);cv.style.height=h+'px';cv._w=w;cv._h=h}const ctx=cv.getContext('2d');ctx.setTransform(DPR,0,0,DPR,0,0);ctx.clearRect(0,0,w,h);ctx.textAlign='left';ctx.textBaseline='alphabetic';ctx.setLineDash([]);ctx.globalAlpha=1;ctx.lineCap='butt';return{ctx,W:w,H:h}}
+function sig(ctx,W,H,light){ctx.save();ctx.font="italic 600 12px Fraunces, serif";ctx.fillStyle=light?'rgba(255,255,255,.6)':'rgba(109,75,176,.65)';ctx.textAlign='right';ctx.textBaseline='bottom';ctx.fillText('✎ '+SIGN,W-8,H-5);ctx.restore()}
+function txt(ctx,s,x,y,o){o=o||{};ctx.save();ctx.font=o.font||"14px 'Source Serif 4', serif";ctx.fillStyle=o.c||'#1b2340';ctx.textAlign=o.a||'left';ctx.textBaseline=o.b||'alphabetic';if(o.alpha!=null)ctx.globalAlpha=o.alpha;ctx.fillText(s,x,y);ctx.restore()}
+function arrow(ctx,x1,y1,x2,y2,col,w,h){w=w||2;h=h||9;ctx.save();ctx.strokeStyle=col;ctx.fillStyle=col;ctx.lineWidth=w;const a=Math.atan2(y2-y1,x2-x1);ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2-h*.6*Math.cos(a),y2-h*.6*Math.sin(a));ctx.stroke();ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-h*Math.cos(a-.42),y2-h*Math.sin(a-.42));ctx.lineTo(x2-h*Math.cos(a+.42),y2-h*Math.sin(a+.42));ctx.closePath();ctx.fill();ctx.restore()}
+function rrect(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
+const ease=x=>x<0?0:x>1?1:x*x*(3-2*x);
+function live(cv,frame){let vis=false,last=0,run=false;new IntersectionObserver(es=>{vis=es[0].isIntersecting;if(vis&&!run){run=true;last=performance.now();requestAnimationFrame(loop)}}).observe(cv);function loop(now){if(!vis){run=false;return}const dt=Math.min(.05,(now-last)/1000);last=now;try{frame(dt,now)}catch(e){console.error(e);run=false;return}requestAnimationFrame(loop)}}
+/* oscilloscope */
+function scope(ctx,x,y,w,h,o){ctx.save();rrect(ctx,x,y,w,h,8);ctx.fillStyle='#0f1b2d';ctx.fill();ctx.clip();
+ const nx=o.nx||10,ny=o.ny||8;ctx.strokeStyle='rgba(127,209,196,.15)';ctx.lineWidth=1;
+ for(let i=1;i<nx;i++){const px=x+i*w/nx;ctx.beginPath();ctx.moveTo(px,y);ctx.lineTo(px,y+h);ctx.stroke()}
+ for(let j=1;j<ny;j++){const py=y+j*h/ny;ctx.beginPath();ctx.moveTo(x,py);ctx.lineTo(x+w,py);ctx.stroke()}
+ const X=t=>x+(t-o.t0)/(o.t1-o.t0)*w,Y=v=>y+h-(v-o.y0)/(o.y1-o.y0)*h;
+ if(o.y0<0&&o.y1>0){ctx.strokeStyle='rgba(127,209,196,.4)';ctx.beginPath();ctx.moveTo(x,Y(0));ctx.lineTo(x+w,Y(0));ctx.stroke()}
+ if(o.pre)o.pre(ctx,X,Y);
+ (o.tr||[]).forEach(tr=>{if(!tr.pts||tr.pts.length<2)return;ctx.strokeStyle=tr.c;ctx.lineWidth=tr.w||2;ctx.setLineDash(tr.dash||[]);ctx.beginPath();tr.pts.forEach((p,i)=>{const px=X(p[0]),py=Y(p[1]);i?ctx.lineTo(px,py):ctx.moveTo(px,py)});ctx.stroke();ctx.setLineDash([])});
+ if(o.post)o.post(ctx,X,Y);
+ let lx=x+8;ctx.font="700 12px Fraunces, serif";ctx.textAlign='left';ctx.textBaseline='alphabetic';(o.tr||[]).forEach(tr=>{if(tr.lab){ctx.fillStyle=tr.c;ctx.fillText(tr.lab,lx,y+16);lx+=ctx.measureText(tr.lab).width+14}});
+ if(o.title){ctx.fillStyle='#e8eef7';ctx.textAlign='right';ctx.fillText(o.title,x+w-8,y+16);ctx.textAlign='left'}
+ if(o.foot){ctx.font="11px 'JetBrains Mono', monospace";ctx.fillStyle='#8fa6bf';ctx.textAlign='right';ctx.fillText(o.foot,x+w-8,y+h-7)}
+ ctx.restore();return{X,Y}}
+function sample(fn,t0,t1,n){const a=[];for(let k=0;k<=n;k++){const t=t0+(t1-t0)*k/n;a.push([t,fn(t)])}return a}
+/* circuits */
+function wires(ctx,segs){ctx.save();ctx.strokeStyle='#1b2340';ctx.lineWidth=2.2;ctx.lineJoin='round';segs.forEach(p=>{ctx.beginPath();p.forEach((q,i)=>i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1]));ctx.stroke()});ctx.restore()}
+function comp(ctx,type,x,y,ang,o){o=o||{};ctx.save();ctx.translate(x,y);ctx.rotate(ang||0);ctx.lineWidth=2.2;ctx.strokeStyle='#1b2340';ctx.fillStyle='#fff';
+ if(type==='R'){ctx.fillRect(-24,-9,48,18);ctx.strokeRect(-24,-9,48,18)}
+ else if(type==='C'){ctx.fillRect(-8,-20,16,40);ctx.lineWidth=3.5;ctx.beginPath();ctx.moveTo(-5,-17);ctx.lineTo(-5,17);ctx.moveTo(5,-17);ctx.lineTo(5,17);ctx.stroke();
+  const q=o.q||0,n=Math.round(Math.min(1,Math.abs(q))*5);ctx.font="700 11px sans-serif";ctx.textAlign='center';ctx.textBaseline='middle';for(let k=0;k<n;k++){const yy=-14+k*7;ctx.fillStyle=q>0?'#d62839':'#2f5fa7';ctx.fillText(q>0?'+':'−',-12,yy);ctx.fillStyle=q>0?'#2f5fa7':'#d62839';ctx.fillText(q>0?'−':'+',12,yy)}}
+ else if(type==='L'){ctx.fillRect(-29,-13,58,26);ctx.beginPath();ctx.moveTo(-29,0);for(let k=0;k<4;k++){ctx.arc(-21+14*k,0,7,Math.PI,0,false)}ctx.lineTo(29,0);ctx.stroke()}
+ else if(type==='G'){ctx.beginPath();ctx.arc(0,0,15,0,7);ctx.fill();ctx.stroke();if(o.ac){ctx.beginPath();for(let s=-9;s<=9;s++){const yy=-5*Math.sin(s/9*Math.PI);s===-9?ctx.moveTo(s,yy):ctx.lineTo(s,yy)}ctx.stroke()}else{ctx.beginPath();ctx.moveTo(-15,0);ctx.lineTo(15,0);ctx.stroke()}}
+ else if(type==='D'){ctx.fillRect(-12,-11,24,22);ctx.fillStyle='#1b2340';ctx.beginPath();ctx.moveTo(-7,-8);ctx.lineTo(-7,8);ctx.lineTo(6,0);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(6,-8);ctx.lineTo(6,8);ctx.stroke()}
+ else if(type==='lamp'){const b=o.b||0;if(b>0.02){const g=ctx.createRadialGradient(0,0,4,0,0,38);g.addColorStop(0,`rgba(255,225,90,${.9*b})`);g.addColorStop(1,'rgba(255,200,0,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,0,38,0,7);ctx.fill()}ctx.fillStyle=b>0.02?`rgb(255,${Math.round(250-60*b)},${Math.round(200-170*b)})`:'#fff';ctx.beginPath();ctx.arc(0,0,13,0,7);ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(-9,-9);ctx.lineTo(9,9);ctx.moveTo(9,-9);ctx.lineTo(-9,9);ctx.stroke()}
+ else if(type==='box'){ctx.fillRect(-26,-13,52,26);ctx.strokeStyle='#6d4bb0';ctx.strokeRect(-26,-13,52,26);ctx.rotate(-(ang||0));ctx.fillStyle='#6d4bb0';ctx.font="700 11px Fraunces, serif";ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(o.t||'',0,1)}
+ ctx.restore();
+ if(o.lab)txt(ctx,o.lab,x+(o.lx||0),y+(o.ly||0),{a:'center',b:'middle',font:"700 14px Fraunces, serif",c:o.lc||'#1b2340'})}
+function plen(pts){const P=pts.concat([pts[0]]);const seg=[];let L=0;for(let i=0;i<P.length-1;i++){const l=Math.hypot(P[i+1][0]-P[i][0],P[i+1][1]-P[i][1]);seg.push(l);L+=l}return{P,seg,L}}
+function pAt(pl,s){s=((s%pl.L)+pl.L)%pl.L;for(let i=0;i<pl.seg.length;i++){if(s<=pl.seg[i]){const k=s/pl.seg[i]||0;return[pl.P[i][0]+(pl.P[i+1][0]-pl.P[i][0])*k,pl.P[i][1]+(pl.P[i+1][1]-pl.P[i][1])*k]}s-=pl.seg[i]}return pl.P[0]}
+function flow(ctx,pts,phase,alpha){const pl=plen(pts),sp=20,n=Math.floor(pl.L/sp);ctx.save();ctx.globalAlpha=alpha==null?1:alpha;ctx.fillStyle='#f2a541';for(let k=0;k<n;k++){const p=pAt(pl,k*sp+phase);ctx.beginPath();ctx.arc(p[0],p[1],3.2,0,7);ctx.fill()}ctx.restore()}
+function vArrow(ctx,x,y1,y2,lab,col){arrow(ctx,x,y1,x,y2,col||'#6d4bb0',1.6,8);txt(ctx,lab,x+6,(y1+y2)/2+4,{font:"italic 700 13px Fraunces, serif",c:col||'#6d4bb0'})}
+function bars(ctx,x,y,w,items,tot){const bh=14,gap=8;items.forEach((it,k)=>{const yy=y+k*(bh+gap);txt(ctx,it[0],x,yy+11,{font:"700 12px Fraunces, serif",c:it[2]});const bx=x+34,bw=w-34;ctx.fillStyle='#eeeaf8';ctx.fillRect(bx,yy,bw,bh);ctx.fillStyle=it[2];ctx.fillRect(bx,yy,bw*Math.max(0,Math.min(1,it[1]/tot)),bh)})}
+
+/* ---------- Héros ---------- */
+(function(){const cv=$('#cvHero');live(cv,(dt,now)=>{const {ctx,W,H}=fit(cv,.62,.6);const t=now/1000;
+ scope(ctx,10,10,W-20,H-20,{t0:0,t1:1,y0:-1.2,y1:1.2,tr:[
+  {pts:sample(x=>.8*Math.exp(-1.6*x)*Math.cos(2*Math.PI*(6*x-t*.5)),0,1,300),c:'#ffd166',lab:'u_C (RLC)'},
+  {pts:sample(x=>{const p=((x+t*.12)%.5)/.5;return p<.5?-.6+1.3*(1-Math.exp(-p*7)):.7-1.3*(1-Math.exp(-(p-.5)*7))},0,1,300),c:'#7fd1c4',w:2,lab:'i (RL)'},
+  {pts:sample(x=>{const p=((x+t*.15)%.5)/.5;return p<.5?-.9+1.6*(1-Math.exp(-p*10)):.7-1.6*(1-Math.exp(-(p-.5)*10))},0,1,300),c:'#f28482',lab:'u_C (RC)'}]});
+ sig(ctx,W,H,true)})})();
+
+/* ---------- RC ---------- */
+(function(){const cv=$('#cvRC');let R=1000,C=4e-6,E=6,K=1,mode='man',Tg=.04,uC=0,tA=0,tw=0,rec=true,pts=[],uS=0,phase=0;const WIN=.1;
+ function rd(){R=+$('#rcR').value;C=+$('#rcC').value*1e-6;E=+$('#rcE').value;Tg=+$('#rcT').value*1e-3;$('#rcRv').textContent=R+' Ω';$('#rcCv').textContent=fmt(+$('#rcC').value,1)+' µF';$('#rcEv').textContent=E+' V';$('#rcTv').textContent=$('#rcT').value+' ms'}
+ function trig(k){K=k;pts=[];tw=0;rec=true;uS=uC}
+ function step(dtr){const n=10,dt=dtr*WIN/6/n;for(let s=0;s<n;s++){if(mode==='sq'){K=(Math.floor(tA/(Tg/2))%2===0)?1:2}const tg=K===1?E:0;uC=tg+(uC-tg)*Math.exp(-dt/(R*C));tA+=dt;
+   if(mode==='sq'){tw+=dt;if(tw>=WIN){tw-=WIN;pts=[]}pts.push([tw,uC,tg-uC])}else if(rec){tw+=dt;if(tw>WIN)rec=false;else pts.push([tw,uC,tg-uC])}}
+  const i=((K===1?E:0)-uC)/R;phase+=dtr*160*i/(6/R)}
+ function draw(){const {ctx,W,H}=fit(cv,.5,1.25);const wide=W>=640;const cw=wide?W*.42:W,chh=wide?H:H*.46;
+  const x0=cw*.12,x1=cw*.3,xk=cw*.5,x4=cw*.86,yT=chh*.2,yB=chh*.84,c1=[xk-34,yT-22],c2=[xk-34,yT+22],P=[xk,yT];
+  const i=((K===1?E:0)-uC)/R;
+  wires(ctx,[[[x0,yB],[x0,yT-22],c1],[[x1,yB],[x1,yT+22],c2],[P,[x4,yT],[x4,yB],[x0,yB]]]);
+  const path=K===1?[[x0,yB],[x0,yT-22],c1,P,[x4,yT],[x4,yB]]:[[x1,yB],[x1,yT+22],c2,P,[x4,yT],[x4,yB]];
+  flow(ctx,path,phase,Math.min(1,Math.abs(i)/(E/R)*3+.05));
+  ctx.strokeStyle='#1b2340';ctx.lineWidth=3;const tgt=K===1?c1:c2;ctx.beginPath();ctx.moveTo(P[0],P[1]);ctx.lineTo(tgt[0]+3,tgt[1]);ctx.stroke();
+  [c1,c2,P].forEach(p=>{ctx.fillStyle='#1b2340';ctx.beginPath();ctx.arc(p[0],p[1],3.5,0,7);ctx.fill()});
+  txt(ctx,'1',c1[0]-12,c1[1]+4,{font:"700 12px Fraunces, serif",c:'#2a9d8f'});txt(ctx,'2',c2[0]-12,c2[1]+4,{font:"700 12px Fraunces, serif",c:'#6d4bb0'});txt(ctx,'K',xk-18,yT+4,{font:"700 14px Fraunces, serif"});
+  comp(ctx,'G',x0,(yT-22+yB)/2,Math.PI/2,{ac:mode==='sq',lab:mode==='sq'?'GBF':'E',lx:-28});
+  txt(ctx,'+',x0+8,(yT-22+yB)/2-18,{font:"700 13px sans-serif",c:'#d62839'});
+  comp(ctx,'R',(xk+x4)/2,yT,0,{lab:'R',ly:-20});
+  comp(ctx,'C',x4,(yT+yB)/2,Math.PI/2,{q:uC/12*2,lab:'C',lx:-30});
+  vArrow(ctx,x4+26,(yT+yB)/2+24,(yT+yB)/2-24,'uC','#e08a00');
+  if(Math.abs(i)>1e-6)arrow(ctx,(xk+x4)/2-34*(i>0?1:-1)-6,yT-1,(xk+x4)/2-34*(i>0?1:-1)+(i>0?6:-6),yT-1,'#c22a37',2,9);
+  txt(ctx,'i',(xk+x4)/2-36,yT+20,{font:"italic 700 13px Fraunces, serif",c:'#c22a37'});
+  const sx=wide?cw+6:8,sy=wide?10:chh+4,sw=wide?W-cw-14:W-16,sh=wide?H-20:H-chh-12;
+  const tr=[{pts:pts.map(p=>[p[0],p[1]]),c:'#ffd166',lab:'u_C'}];if($('#rcUR').checked)tr.push({pts:pts.map(p=>[p[0],p[2]]),c:'#7fd1c4',lab:'u_R = R·i'});
+  scope(ctx,sx,sy,sw,sh,{t0:0,t1:WIN,y0:-12,y1:12,tr,foot:'10 ms/div · 3 V/div',title:mode==='sq'?'GBF créneau':'',
+   post:(c,X,Y)=>{c.setLineDash([4,4]);c.strokeStyle='rgba(255,255,255,.35)';c.lineWidth=1;c.beginPath();c.moveTo(X(0),Y(E));c.lineTo(X(WIN),Y(E));c.stroke();c.setLineDash([]);txt(c,'E',X(WIN)-12,Y(E)-4,{c:'#cfd8e3',font:"700 12px Fraunces, serif"});
+    if(mode==='man'&&$('#rcTau').checked&&pts.length>2){const tau=R*C,tg=K===1?E:0;const ut=tg+(uS-tg)*Math.exp(-1);c.strokeStyle='#f28482';c.lineWidth=1.6;c.beginPath();c.moveTo(X(0),Y(uS));c.lineTo(X(tau),Y(tg));c.stroke();
+     c.setLineDash([3,3]);c.beginPath();c.moveTo(X(tau),Y(tg));c.lineTo(X(tau),Y(0));c.moveTo(X(0),Y(ut));c.lineTo(X(tau),Y(ut));c.stroke();c.setLineDash([]);
+     c.fillStyle='#f28482';c.beginPath();c.arc(X(tau),Y(ut),4,0,7);c.fill();txt(c,'τ',X(tau)+4,Y(0)+14,{c:'#f28482',font:"800 14px Fraunces, serif"});txt(c,K===1?'0,63 E':'0,37 E',X(tau)+6,Y(ut)-6,{c:'#f28482',font:"700 11px Fraunces, serif"})}}});
+  sig(ctx,W,H);
+  $('#rcRead').innerHTML=`<span>τ = RC = <b>${fmt(R*C*1e3,1)} ms</b></span><span>u_C = <b>${fmt(uC,2)} V</b></span><span>i = <b>${fmt(i*1e3,2)} mA</b></span><span>E_e = ½Cu_C² = <b>${sci(.5*C*uC*uC,2)} J</b></span>`}
+ $('#rcK1').onclick=()=>{if(mode!=='man'){mode='man';$('#rcMode').value='man'}trig(1)};$('#rcK2').onclick=()=>{if(mode!=='man'){mode='man';$('#rcMode').value='man'}trig(2)};
+ $('#rcMode').onchange=e=>{mode=e.target.value;pts=[];tw=0;tA=0;rec=true;if(mode==='man')trig(K)};
+ ['#rcR','#rcC','#rcE','#rcT'].forEach(s=>$(s).oninput=()=>{rd();if(mode==='man')trig(K)});
+ rd();live(cv,dt=>{step(dt);draw()});reg('rc',draw)})();
+
+/* ---------- Deux lampes ---------- */
+(function(){const cv=$('#cvLamp');let on=false,i1=0,i2=0,ph=0;
+ $('#lmpK').onclick=()=>{on=!on;$('#lmpK').textContent=on?'Ouvrir K':'Fermer K'};
+ function draw(){const {ctx,W,H}=fit(cv,.36,.75);const x0=W*.12,xa=W*.42,xb=W*.78,yT=H*.15,yB=H*.88,ks=x0+(xa-x0)*.35,ke=x0+(xa-x0)*.7;
+  wires(ctx,[[[x0,yB],[x0,yT],[ks,yT]],[[ke,yT],[xb,yT],[xb,yB],[x0,yB]],[[xa,yT],[xa,yB]]]);
+  flow(ctx,[[x0,yB],[x0,yT],[xa,yT],[xa,yB]],ph,Math.min(1,i1)*.9);flow(ctx,[[xa,yT],[xb,yT],[xb,yB],[xa,yB]],ph,Math.min(1,i2)*.9);
+  ctx.strokeStyle='#1b2340';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(ks,yT);on?ctx.lineTo(ke,yT):ctx.lineTo(ke-6,yT-18);ctx.stroke();ctx.fillStyle='#1b2340';[ks,ke].forEach(x=>{ctx.beginPath();ctx.arc(x,yT,3.5,0,7);ctx.fill()});
+  txt(ctx,'K',(ks+ke)/2,yT-14,{a:'center',font:"700 14px Fraunces, serif"});
+  comp(ctx,'G',x0,(yT+yB)/2,Math.PI/2,{lab:'E',lx:-26});
+  comp(ctx,'R',xa,yT+(yB-yT)*.32,Math.PI/2,{lab:'R',lx:-24});comp(ctx,'lamp',xa,yT+(yB-yT)*.7,0,{b:i1*i1,lab:'L₂',lx:-30});
+  comp(ctx,'L',xb,yT+(yB-yT)*.32,Math.PI/2,{lab:'(L, r)',lx:-40});comp(ctx,'lamp',xb,yT+(yB-yT)*.7,0,{b:i2*i2,lab:'L₁',lx:-30});
+  sig(ctx,W,H)}
+ live(cv,dt=>{const t1=on?1:0;i1+=(t1-i1)*Math.min(1,dt*40);i2+=(t1-i2)*(1-Math.exp(-dt/(on?.9:.12)));ph+=dt*120*(i1+i2)/2;draw()});reg('rl',draw)})();
+
+/* ---------- RL ---------- */
+(function(){const cv=$('#cvRL');let L=.5,R=90,r=10,E=6,K=1,i=0,tw=0,rec=true,pts=[],iS=0,phase=0;const WIN=.05;
+ function rd(){L=+$('#rlL').value;R=+$('#rlR').value;r=+$('#rlr').value;$('#rlrv').textContent=r+' Ω';E=+$('#rlE').value;$('#rlLv').textContent=fmt(L,2)+' H';$('#rlRv').textContent=R+' Ω';$('#rlEv').textContent=E+' V'}
+ function trig(k){K=k;pts=[];tw=0;rec=true;iS=i}
+ const tau=()=>L/(R+r),I0=()=>E/(R+r);
+ function uL(){return K===1?E-R*i:-R*i}
+ function step(dtr){const n=10,dt=dtr*WIN/6/n;for(let s=0;s<n;s++){const tg=K===1?I0():0;i=tg+(i-tg)*Math.exp(-dt/tau());if(rec){tw+=dt;if(tw>WIN)rec=false;else pts.push([tw,R*i,uL()])}}phase+=dtr*160*i/(6/100)}
+ function draw(){const {ctx,W,H}=fit(cv,.5,1.25);const wide=W>=640;const cw=wide?W*.42:W,chh=wide?H:H*.46;
+  const x0=cw*.12,xa=cw*.45,x4=cw*.84,yT=chh*.2,yB=chh*.84,ks=x0+(xa-x0)*.3,ke=x0+(xa-x0)*.72;
+  wires(ctx,[[[x0,yB],[x0,yT],[ks,yT]],[[ke,yT],[x4,yT],[x4,yB],[x0,yB]],[[xa,yT],[xa,yB]]]);
+  const path=K===1?[[x0,yB],[x0,yT],[x4,yT],[x4,yB]]:[[xa,yB],[xa,yT],[x4,yT],[x4,yB]];flow(ctx,path,phase,Math.min(1,i/I0()*1.2+.03));
+  ctx.strokeStyle='#1b2340';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(ks,yT);K===1?ctx.lineTo(ke,yT):ctx.lineTo(ke-6,yT-18);ctx.stroke();ctx.fillStyle='#1b2340';[ks,ke].forEach(x=>{ctx.beginPath();ctx.arc(x,yT,3.5,0,7);ctx.fill()});
+  txt(ctx,'K',(ks+ke)/2,yT-14,{a:'center',font:"700 14px Fraunces, serif"});
+  comp(ctx,'G',x0,(yT+yB)/2,Math.PI/2,{lab:'E',lx:-26});txt(ctx,'+',x0+8,(yT+yB)/2-18,{font:"700 13px sans-serif",c:'#d62839'});
+  comp(ctx,'D',xa,(yT+yB)/2,-Math.PI/2,{lab:'D',lx:-22});
+  comp(ctx,'R',(xa+x4)/2,yT,0,{lab:'R',ly:-20});
+  comp(ctx,'L',x4,(yT+yB)/2,Math.PI/2,{lab:'(L, r)',lx:-42});
+  vArrow(ctx,x4+26,(yT+yB)/2+28,(yT+yB)/2-28,'u_L','#7fb0ff');
+  const sx=wide?cw+6:8,sy=wide?10:chh+4,sw=wide?W-cw-14:W-16,sh=wide?H-20:H-chh-12;
+  scope(ctx,sx,sy,sw,sh,{t0:0,t1:WIN,y0:-12,y1:12,tr:[{pts:pts.map(p=>[p[0],p[1]]),c:'#ffd166',lab:'u_R = R·i (image de i)'},{pts:pts.map(p=>[p[0],p[2]]),c:'#7fb0ff',lab:'u_L'}],foot:'5 ms/div · 3 V/div',
+   post:(c,X,Y)=>{if($('#rlTau').checked&&pts.length>2){const tg=K===1?R*I0():0,u0=R*iS,ut=tg+(u0-tg)*Math.exp(-1),ta=tau();c.strokeStyle='#f28482';c.lineWidth=1.6;c.beginPath();c.moveTo(X(0),Y(u0));c.lineTo(X(ta),Y(tg));c.stroke();c.setLineDash([3,3]);c.beginPath();c.moveTo(X(ta),Y(tg));c.lineTo(X(ta),Y(0));c.moveTo(X(0),Y(ut));c.lineTo(X(ta),Y(ut));c.stroke();c.setLineDash([]);c.fillStyle='#f28482';c.beginPath();c.arc(X(ta),Y(ut),4,0,7);c.fill();txt(c,'τ',X(ta)+4,Y(0)+14,{c:'#f28482',font:"800 14px Fraunces, serif"})}}});
+  sig(ctx,W,H);
+  $('#rlRead').innerHTML=`<span>r = <b>${r} Ω</b></span><span>τ = L/(R+r) = <b>${fmt(tau()*1e3,2)} ms</b></span><span>I₀ = <b>${fmt(I0()*1e3,1)} mA</b></span><span>i = <b>${fmt(i*1e3,1)} mA</b></span><span>E_m = ½Li² = <b>${sci(.5*L*i*i,2)} J</b></span>`}
+ $('#rlOn').onclick=()=>trig(1);$('#rlOff').onclick=()=>trig(2);['#rlL','#rlR','#rlr','#rlE'].forEach(s=>$(s).oninput=()=>{rd();trig(K)});
+ rd();live(cv,dt=>{step(dt);draw()});reg('rl',draw)})();
+
+/* ---------- Démonstrations étape par étape ---------- */
+$$('.der[data-step]').forEach(d=>{const L=[...d.children];let n=1;const bar=document.createElement('div');bar.className='derbar';
+ bar.innerHTML='<button class="btn t sm">Étape suivante ▸</button><button class="btn o sm">Tout afficher</button><span></span>';d.after(bar);
+ const [bn,ba,sp]=bar.children;
+ function up(){L.forEach((l,k)=>l.style.display=k<n?'':'none');sp.textContent=n+' / '+L.length;bn.disabled=n>=L.length;ba.textContent=n>=L.length?'↺ Recommencer':'Tout afficher'}
+ bn.onclick=()=>{n=Math.min(L.length,n+1);up()};ba.onclick=()=>{n=n>=L.length?1:L.length;up()};d._all=v=>{n=v?L.length:1;up()};up()});
+$('#revealAll').addEventListener('click',()=>{$$('.der[data-step]').forEach(d=>d._all&&d._all(allOn))});
+
+const CK='#1b2340',CV='#6d4bb0',CA='#e08a00',CT='#2a9d8f',CR='#c22a37',CB='#3d6fb6';
+/* petit traceur de courbe sur fond clair */
+function plot(ctx,x,y,w,h,o){ctx.save();ctx.fillStyle='#fff';rrect(ctx,x,y,w,h,8);ctx.fill();ctx.strokeStyle='#e4def3';ctx.stroke();
+ const px=x+34,py=y+18,pw=w-46,ph=h-40;const X=t=>px+(t-o.t0)/(o.t1-o.t0)*pw,Y=v=>py+ph-(v-o.y0)/(o.y1-o.y0)*ph;
+ ctx.strokeStyle=CK;ctx.lineWidth=1.4;arrow(ctx,px,Y(Math.max(o.y0,0)),px+pw+6,Y(Math.max(o.y0,0)),CK,1.4,7);arrow(ctx,px,py+ph,px,py-8,CK,1.4,7);
+ txt(ctx,o.yl,px+6,py-2,{font:"italic 700 13px Fraunces, serif",c:o.c});txt(ctx,'t',px+pw+2,Y(Math.max(o.y0,0))+15,{font:"italic 12px Fraunces, serif"});
+ if(o.pre)o.pre(ctx,X,Y);
+ (o.tr||[]).forEach(tr=>{ctx.strokeStyle=tr.c;ctx.lineWidth=tr.w||2.4;ctx.setLineDash(tr.dash||[]);ctx.beginPath();tr.pts.forEach((p,i)=>i?ctx.lineTo(X(p[0]),Y(p[1])):ctx.moveTo(X(p[0]),Y(p[1])));ctx.stroke();ctx.setLineDash([])});
+ (o.ticks||[]).forEach(tk=>{txt(ctx,tk[1],px-4,Y(tk[0])+4,{a:'right',font:"700 11px Fraunces, serif",c:tk[2]||CK})});
+ if(o.post)o.post(ctx,X,Y);ctx.restore();return{X,Y}}
+function dashL(ctx,x1,y1,x2,y2,c){ctx.save();ctx.strokeStyle=c||CR;ctx.setLineDash([4,4]);ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.restore()}
+function dot(ctx,x,y,c){ctx.fillStyle=c;ctx.beginPath();ctx.arc(x,y,4.5,0,7);ctx.fill()}
+
+/* ---------- RC : le condensateur réel ---------- */
+(function(){const cv=$('#cvCap');let q=0,tg=0,ph=0;const C=10e-6,E=6;
+ $('#capCh').onclick=()=>tg=1;$('#capDe').onclick=()=>tg=0;
+ function plate(ctx,x,y0,y1,ox,oy,th,lab){ // plaque métallique en perspective
+  ctx.save();const g=ctx.createLinearGradient(x,y0+oy,x+ox,y1);g.addColorStop(0,'#eef2f7');g.addColorStop(.45,'#aeb8c6');g.addColorStop(1,'#d9dfe7');
+  ctx.fillStyle=g;ctx.strokeStyle='#5d6475';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x,y0);ctx.lineTo(x+ox,y0+oy);ctx.lineTo(x+ox,y1+oy);ctx.lineTo(x,y1);ctx.closePath();ctx.fill();ctx.stroke();
+  ctx.fillStyle='#8a94a6';ctx.beginPath();ctx.moveTo(x,y0);ctx.lineTo(x+th,y0);ctx.lineTo(x+th+ox,y0+oy);ctx.lineTo(x+ox,y0+oy);ctx.closePath();ctx.fill();ctx.stroke();
+  ctx.fillStyle='#9aa4b4';ctx.fillRect(x,y0,th,y1-y0);ctx.strokeRect(x,y0,th,y1-y0);ctx.restore();
+  txt(ctx,lab,x+ox/2+th/2,y0+oy-10,{a:'center',font:"800 16px Fraunces, serif",c:CK})}
+ function electrolytic(ctx,x,y,w,h){ // condensateur électrolytique réel
+  const ry=w*.18;ctx.save();
+  ctx.strokeStyle='#8a94a6';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x-w*.18,y+h);ctx.lineTo(x-w*.18,y+h+h*.55);ctx.moveTo(x+w*.18,y+h);ctx.lineTo(x+w*.18,y+h+h*.4);ctx.stroke();
+  txt(ctx,'+',x-w*.18,y+h+h*.55+16,{a:'center',font:"800 15px sans-serif",c:CR});txt(ctx,'−',x+w*.18,y+h+h*.4+16,{a:'center',font:"800 15px sans-serif",c:CB});
+  const g=ctx.createLinearGradient(x-w/2,0,x+w/2,0);g.addColorStop(0,'#16306b');g.addColorStop(.35,'#3f6fd1');g.addColorStop(.6,'#2a55b0');g.addColorStop(1,'#0f2150');
+  ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(x-w/2,y);ctx.lineTo(x-w/2,y+h);ctx.ellipse(x,y+h,w/2,ry,0,Math.PI,0,true);ctx.lineTo(x+w/2,y);ctx.closePath();ctx.fill();
+  ctx.fillStyle='rgba(235,240,250,.88)';ctx.beginPath();ctx.moveTo(x+w*.18,y);ctx.lineTo(x+w*.18,y+h+ry*.92);ctx.lineTo(x+w*.42,y+h+ry*.55);ctx.lineTo(x+w*.42,y);ctx.closePath();ctx.fill();
+  for(let k=0;k<4;k++)txt(ctx,'−',x+w*.3,y+h*(.22+k*.2),{a:'center',font:"800 16px sans-serif",c:'#16306b'});
+  ctx.save();ctx.translate(x-w*.06,y+h*.55);ctx.rotate(-Math.PI/2);txt(ctx,'470 µF  25 V',0,0,{a:'center',font:"700 12px Fraunces, serif",c:'#e8eef9'});ctx.restore();
+  const gt=ctx.createRadialGradient(x-w*.12,y-ry*.3,2,x,y,w/2);gt.addColorStop(0,'#ffffff');gt.addColorStop(1,'#9aa4b4');ctx.fillStyle=gt;ctx.beginPath();ctx.ellipse(x,y,w/2,ry,0,0,7);ctx.fill();
+  ctx.strokeStyle='#6b7486';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(x-w*.3,y);ctx.lineTo(x+w*.3,y);ctx.moveTo(x,y-ry*.6);ctx.lineTo(x,y+ry*.6);ctx.stroke();ctx.restore()}
+ function roll(ctx,x,y,R){ // coupe : feuilles enroulées
+  ctx.save();ctx.fillStyle='#fff8ea';ctx.beginPath();ctx.arc(x,y,R,0,7);ctx.fill();ctx.strokeStyle='#c9b88f';ctx.lineWidth=1;ctx.stroke();
+  const turns=4.2;[['#8a94a6',0],['#d6a84a',Math.PI]].forEach(([c,o],k)=>{ctx.strokeStyle=c;ctx.lineWidth=k?2.4:2.8;ctx.beginPath();for(let s=0;s<=300;s++){const a=s/300*turns*2*Math.PI,r=R*.12+R*.82*a/(turns*2*Math.PI);const xx=x+r*Math.cos(a+o),yy=y+r*Math.sin(a+o);s?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy)}ctx.stroke()});
+  ctx.restore()}
+ function draw(){const {ctx,W,H}=fit(cv,.6,1.75);const nar=W<640;
+  // ---- condensateur plan en perspective ----
+  const cw=nar?W:W*.6,cx=cw*.5,cy=nar?H*.25:H*.44,ph2=nar?H*.2:H*.48,y0=cy-ph2/2,y1=cy+ph2/2,gap=Math.min(70,cw*.16),ox=gap*.55,oy=-gap*.42,th=6;
+  const xa=cx-gap/2-th,xb=cx+gap/2;
+  ctx.save();ctx.fillStyle='rgba(123,63,228,.16)';ctx.strokeStyle='rgba(123,63,228,.45)';ctx.beginPath();ctx.moveTo(xa+th,y0);ctx.lineTo(xa+th+ox,y0+oy);ctx.lineTo(xb+ox,y0+oy);ctx.lineTo(xb+ox,y1+oy);ctx.lineTo(xb,y1);ctx.lineTo(xa+th,y1);ctx.closePath();ctx.fill();ctx.stroke();ctx.restore();
+  plate(ctx,xa,y0,y1,ox,oy,th,'A');
+  // lignes de champ
+  if(q>.05){ctx.save();ctx.globalAlpha=Math.min(1,q*1.2);for(let k=0;k<5;k++){const yy=y0+ph2*(k+.6)/5.2+oy*.5;arrow(ctx,xa+th+ox*.5+4,yy,xb+ox*.5-4,yy,'#e0247a',1.3,6)}ctx.restore();txt(ctx,'champ E',cx+ox*.5,y1+oy*.5+16,{a:'center',font:"italic 700 12px Fraunces, serif",c:'#e0247a',alpha:Math.min(1,q*1.2)})}
+  plate(ctx,xb,y0,y1,ox,oy,th,'B');
+  txt(ctx,'isolant (diélectrique)',cx+ox*.5,y0+oy-30,{a:'center',font:"italic 700 12px Fraunces, serif",c:'#7b3fe4'});
+  const n=Math.round(q*6);for(let k=0;k<n;k++){const yy=y0+14+k*(ph2-28)/5;txt(ctx,'+',xa-12,yy+5,{a:'center',font:"800 17px sans-serif",c:CR});txt(ctx,'−',xb+th+ox+12,yy+oy*.4+5,{a:'center',font:"800 17px sans-serif",c:CB})}
+  // fils et courant
+  const lx0=cw*.04,lx1=cw*.96;wires(ctx,[[[lx0,cy],[xa,cy]],[[xb+th,cy],[lx1,cy]]]);[lx0,lx1].forEach(x=>dot(ctx,x,cy,CK));
+  const di=tg-q;if(Math.abs(di)>.01){flow(ctx,[[lx0,cy],[xa-2,cy]],ph*Math.sign(di),Math.min(1,Math.abs(di)*3));flow(ctx,[[xb+th+2,cy],[lx1,cy]],ph*Math.sign(di),Math.min(1,Math.abs(di)*3))}
+  arrow(ctx,lx0+18,cy-16,lx0+46,cy-16,CR,2,9);txt(ctx,'i',lx0+32,cy-24,{a:'center',font:"italic 700 15px Fraunces, serif",c:CR});
+  const uy=y1+34;arrow(ctx,lx1-6,uy,lx0+6,uy,'#d6337f',2,10);txt(ctx,'u = u_AB',cw/2,uy+18,{a:'center',font:"italic 700 14px Fraunces, serif",c:'#d6337f'});
+  txt(ctx,'q_A = +'+fmt(q*C*E*1e6,1)+' µC',xa-8,y1+14,{a:'right',font:"700 12px Fraunces, serif",c:CR});txt(ctx,'q_B = −'+fmt(q*C*E*1e6,1)+' µC',xb+th+ox+6,y1+oy+14,{font:"700 12px Fraunces, serif",c:CB});
+  // ---- composant réel + coupe + symbole ----
+  const rx=nar?W*.28:W*.7,ry0=nar?H*.53:H*.12,ew=nar?W*.2:Math.min(70,W*.07),eh=ew*1.7;
+  electrolytic(ctx,rx,ry0,ew,eh);txt(ctx,'condensateur réel',rx,ry0-ew*.3-10,{a:'center',font:"700 13px Fraunces, serif",c:CK});
+  const kx=nar?W*.7:W*.88,ky=ry0+eh*.45,R=nar?W*.15:Math.min(54,W*.06);roll(ctx,kx,ky,R);txt(ctx,'vue en coupe',kx,ky-R-8,{a:'center',font:"700 13px Fraunces, serif",c:CK});
+  txt(ctx,'— aluminium (armatures)',kx-R,ky+R+16,{font:"700 11px Fraunces, serif",c:'#6b7486'});txt(ctx,'— papier imprégné (isolant)',kx-R,ky+R+30,{font:"700 11px Fraunces, serif",c:'#b8862a'});
+  const sx=nar?W/2:W*.79,sy=nar?H*.93:H*.8;wires(ctx,[[[sx-70,sy],[sx-8,sy]],[[sx+8,sy],[sx+70,sy]]]);comp(ctx,'C',sx,sy,0,{q});
+  txt(ctx,'symbole',sx,sy-30,{a:'center',font:"700 13px Fraunces, serif",c:CV});txt(ctx,'A',sx-70,sy+18,{a:'center',font:"700 13px Fraunces, serif"});txt(ctx,'B',sx+70,sy+18,{a:'center',font:"700 13px Fraunces, serif"});
+  if(!nar){ctx.save();ctx.strokeStyle='#e4def3';ctx.setLineDash([5,5]);ctx.beginPath();ctx.moveTo(W*.6,20);ctx.lineTo(W*.6,H-20);ctx.stroke();ctx.restore()}
+  sig(ctx,W,H);$('#capRead').innerHTML=`<span>C = <b>10 µF</b></span><span>q = q_A = −q_B = <b>${fmt(q*C*E*1e6,1)} µC</b></span><span>u = q/C = <b>${fmt(q*E,2)} V</b></span><span>${Math.abs(di)>.01?(di>0?'charge : i &gt; 0':'décharge : i &lt; 0'):'i = 0'}</span>`}
+ live(cv,dt=>{q+=(tg-q)*Math.min(1,dt*1.1);ph+=dt*90;draw()});reg('rc',draw)})();
+
+/* ---------- RC : association ---------- */
+(function(){const cv=$('#cvAs');let ser=true;
+ $('#asS').onclick=()=>{ser=true;draw()};$('#asP').onclick=()=>{ser=false;draw()};
+ function draw(){const {ctx,W,H}=fit(cv,.4,.85);const C1=+$('#asC1').value,C2=+$('#asC2').value,U=+$('#asU').value;$('#asC1v').textContent=C1+' µF';$('#asC2v').textContent=C2+' µF';$('#asUv').textContent=U+' V';
+  $('#asS').classList.toggle('on',ser);$('#asP').classList.toggle('on',!ser);
+  const Ceq=ser?C1*C2/(C1+C2):C1+C2,q=Ceq*U;let q1,q2,u1,u2;if(ser){q1=q2=q;u1=q/C1;u2=q/C2}else{u1=u2=U;q1=C1*U;q2=C2*U}
+  const y=H*.42,xA=W*.08,xB=W*.92;txt(ctx,'A',xA,y-12,{a:'center',font:"700 15px Fraunces, serif"});txt(ctx,'B',xB,y-12,{a:'center',font:"700 15px Fraunces, serif"});
+  const qs=Math.max(q1,q2);
+  if(ser){const x1=W*.36,x2=W*.64;wires(ctx,[[[xA,y],[x1-8,y]],[[x1+8,y],[x2-8,y]],[[x2+8,y],[xB,y]]]);comp(ctx,'C',x1,y,0,{q:q1/qs});comp(ctx,'C',x2,y,0,{q:q2/qs});
+   txt(ctx,'C₁ = '+C1+' µF',x1,y-34,{a:'center',font:"700 13px Fraunces, serif",c:CV});txt(ctx,'C₂ = '+C2+' µF',x2,y-34,{a:'center',font:"700 13px Fraunces, serif",c:CV});
+   arrow(ctx,x1+36,y+44,x1-36,y+44,'#d6337f',1.6,8);txt(ctx,'u₁ = '+fmt(u1,2)+' V',x1,y+62,{a:'center',font:"700 13px Fraunces, serif",c:'#d6337f'});
+   arrow(ctx,x2+36,y+44,x2-36,y+44,'#d6337f',1.6,8);txt(ctx,'u₂ = '+fmt(u2,2)+' V',x2,y+62,{a:'center',font:"700 13px Fraunces, serif",c:'#d6337f'});
+   txt(ctx,'q₁ = q₂ = '+fmt(q1,1)+' µC (même charge)',W/2,H*.12,{a:'center',font:"700 14px Fraunces, serif",c:CT});
+   arrow(ctx,xB-10,H*.86,xA+10,H*.86,'#e08a00',1.8,9);txt(ctx,'U_AB = u₁ + u₂ = '+U+' V',W/2,H*.86-8,{a:'center',font:"700 13px Fraunces, serif",c:CA})}
+  else{const xm=W/2,ya=y-H*.16,yb=y+H*.16,xl=W*.3,xr=W*.7;wires(ctx,[[[xA,y],[xl,y]],[[xl,ya],[xl,yb]],[[xl,ya],[xm-8,ya]],[[xm+8,ya],[xr,ya]],[[xl,yb],[xm-8,yb]],[[xm+8,yb],[xr,yb]],[[xr,ya],[xr,yb]],[[xr,y],[xB,y]]]);
+   comp(ctx,'C',xm,ya,0,{q:q1/qs});comp(ctx,'C',xm,yb,0,{q:q2/qs});
+   txt(ctx,'C₁ : q₁ = '+fmt(q1,1)+' µC',xm,ya-28,{a:'center',font:"700 13px Fraunces, serif",c:CV});txt(ctx,'C₂ : q₂ = '+fmt(q2,1)+' µC',xm,yb+38,{a:'center',font:"700 13px Fraunces, serif",c:CV});
+   txt(ctx,'u₁ = u₂ = U_AB = '+U+' V (même tension)',W/2,H*.08,{a:'center',font:"700 14px Fraunces, serif",c:CT})}
+  sig(ctx,W,H);$('#asRead').innerHTML=`<span>C<sub>éq</sub> = <b>${fmt(Ceq,2)} µF</b> ${ser?'(&lt; '+Math.min(C1,C2)+' µF)':'(&gt; '+Math.max(C1,C2)+' µF)'}</span><span>q = C<sub>éq</sub>·U = <b>${fmt(q,1)} µC</b></span><span>${ser?'1/C<sub>éq</sub> = 1/C₁ + 1/C₂':'C<sub>éq</sub> = C₁ + C₂'}</span>`}
+ ['#asC1','#asC2','#asU'].forEach(s=>$(s).oninput=draw);reg('rc',draw)})();
+
+/* ---------- RC : les 4 courbes ---------- */
+(function(){const cv=$('#cv4');let ch=true,play=false;
+ $('#cvM').onclick=()=>{ch=true;draw()};$('#cvD').onclick=()=>{ch=false;draw()};$('#c4play').onclick=()=>{play=!play;if(play&&+$('#c4t').value>=4.99)$('#c4t').value=0;$('#c4play').textContent=play?'⏸ Pause':'▶ Animer'};
+ function draw(){const {ctx,W,H}=fit(cv,.62,1.6);const s=+$('#c4t').value;$('#c4tv').textContent=fmt(s,2)+' τ';$('#cvM').classList.toggle('on',ch);$('#cvD').classList.toggle('on',!ch);const tg=$('#c4tg').checked;
+  const narrow=W<640,cols=narrow?1:2,rows=narrow?4:2,gw=(W-10*(cols+1))/cols,gh=(H-10*(rows+1))/rows;
+  const G=ch?[['u_C','E',x=>1-Math.exp(-x),CA,'0,63 E',.63],['q','CE',x=>1-Math.exp(-x),CV,'0,63 CE',.63],['i','E/R',x=>Math.exp(-x),CR,'0,37 E/R',.37],['u_R','E',x=>Math.exp(-x),CT,'0,37 E',.37]]
+          :[['u_C','E',x=>Math.exp(-x),CA,'0,37 E',.37],['q','CE',x=>Math.exp(-x),CV,'0,37 CE',.37],['i','−E/R',x=>-Math.exp(-x),CR,'−0,37 E/R',-.37],['u_R','−E',x=>-Math.exp(-x),CT,'−0,37 E',-.37]];
+  G.forEach((g,k)=>{const cx=10+(k%cols)*(gw+10),cy=10+Math.floor(k/cols)*(gh+10);const neg=g[2](1)<0;
+   plot(ctx,cx,cy,gw,gh,{t0:0,t1:5.2,y0:neg?-1.15:0,y1:neg?0.15:1.15,yl:g[0]+'(t)',c:g[3],tr:[{pts:sample(x=>g[2](Math.min(x,s)),0,s,200),c:g[3]},{pts:sample(g[2],s,5,100),c:g[3],w:1,dash:[2,4]}],
+    ticks:[[neg?-1:1,g[1],g[3]],[g[5],g[4],CR]],
+    post:(c,X,Y)=>{dashL(c,X(1),Y(0),X(1),Y(g[5]));dashL(c,X(0),Y(g[5]),X(1),Y(g[5]));txt(c,'τ',X(1),Y(0)+(neg?-6:14),{a:'center',font:"800 13px Fraunces, serif",c:CR});
+     const fin=ch?(k<2?1:0):0,v0=g[2](0);if(fin!==0||ch)dashL(c,X(0),Y(neg?-1:(ch&&k<2?1:0)),X(5.2),Y(neg?-1:(ch&&k<2?1:0)),'#9aa3b5');
+     if(tg){c.save();c.strokeStyle='#d6337f';c.lineWidth=1.4;c.beginPath();c.moveTo(X(0),Y(v0));c.lineTo(X(1),Y(ch&&k<2?1:0));c.stroke();c.restore()}
+     dot(c,X(s),Y(g[2](s)),g[3])}})});
+  sig(ctx,W,H);const e=Math.exp(-s);
+  $('#c4Read').innerHTML=ch?`<span>u_C = <b>${fmt(1-e,3)} E</b></span><span>q = <b>${fmt(1-e,3)} CE</b></span><span>i = <b>${fmt(e,3)} E/R</b></span><span>u_R = <b>${fmt(e,3)} E</b></span><span>${s>=5?'Régime permanent (t ≥ 5τ)':'Régime transitoire'}</span>`
+   :`<span>u_C = <b>${fmt(e,3)} E</b></span><span>q = <b>${fmt(e,3)} CE</b></span><span>i = <b>−${fmt(e,3)} E/R</b></span><span>u_R = <b>−${fmt(e,3)} E</b></span>`}
+ $('#c4t').oninput=draw;$('#c4tg').onchange=draw;live(cv,dt=>{if(play){let v=+$('#c4t').value+dt*.8;if(v>=5){v=5;play=false;$('#c4play').textContent='▶ Animer'}$('#c4t').value=v}draw()});reg('rc',draw)})();
+
+/* ---------- RL : la bobine réelle ---------- */
+(function(){const cv=$('#cvBob');let on=false,I=0,ph=0;
+ $('#bobI').onclick=()=>{on=!on;$('#bobI').textContent=on?'⏸ Couper le courant':'▶ Faire passer le courant'};
+ function coil(ctx,x0,x1,cy,rc,N,I,ph){const pitch=(x1-x0)/N,ry=rc,rz=rc*.38,wt=Math.max(3,pitch*.82);
+  const P=(s)=>{const a=s*2*Math.PI;return[x0+pitch*s+ry*.0,cy-ry*Math.cos(a),Math.sin(a)]};// z>0 : devant
+  // spires arrière
+  ctx.lineCap='butt';
+  for(let k=0;k<N;k++){ctx.strokeStyle='#8c4a1c';ctx.lineWidth=wt;ctx.beginPath();for(let s=0;s<=20;s++){const p=P(k+.5+s/40);s?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])}ctx.stroke()}
+  // noyau (support isolant)
+  ctx.save();const g=ctx.createLinearGradient(0,cy-ry,0,cy+ry);g.addColorStop(0,'rgba(245,232,200,.55)');g.addColorStop(.5,'rgba(255,248,230,.75)');g.addColorStop(1,'rgba(214,196,150,.6)');ctx.fillStyle=g;ctx.fillRect(x0-6,cy-ry*.86,x1-x0+12,ry*1.72);ctx.restore();
+  // champ magnétique intérieur
+  if(I>.02){ctx.save();ctx.globalAlpha=Math.min(1,I);for(let k=-1;k<=1;k++)arrow(ctx,x0+10,cy+k*ry*.4,x1-10,cy+k*ry*.4,'#0fb5ae',2,9);ctx.restore()}
+  // spires avant
+  for(let k=0;k<N;k++){const g2=ctx.createLinearGradient(0,cy-ry,0,cy+ry);g2.addColorStop(0,'#f0a35a');g2.addColorStop(.35,'#ffd9a8');g2.addColorStop(.6,'#d9742b');g2.addColorStop(1,'#8c4a1c');ctx.strokeStyle=g2;ctx.lineWidth=wt;ctx.beginPath();for(let s=0;s<=20;s++){const p=P(k+s/40);s?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])}ctx.stroke()}
+  // courant : électrons/porteurs le long du fil
+  if(I>.02){ctx.fillStyle='rgba(255,255,255,'+Math.min(1,I)+')';const fr=((ph%1)+1)%1*.5;for(let k=0;k<N;k++){const p=P(k+.02+fr*.96);ctx.beginPath();ctx.arc(p[0],p[1],wt*.22,0,7);ctx.fill()}}
+  ctx.lineCap='butt';ctx.lineWidth=1.5;
+  return{a:P(0),b:P(N)}}
+ function sym(ctx,x0,x1,y,withR){wires(ctx,[[[x0,y],[x1,y]]]);const xm=(x0+x1)/2;comp(ctx,'L',withR?xm-26:xm,y,0,{});if(withR)comp(ctx,'box',xm+40,y,0,{t:'r'});
+  txt(ctx,'A',x0,y+20,{a:'center',font:"700 14px Fraunces, serif"});txt(ctx,'B',x1,y+20,{a:'center',font:"700 14px Fraunces, serif"});
+  [x0,x1].forEach(x=>dot(ctx,x,y,CK));arrow(ctx,x0+14,y-2,x0+34,y-2,CR,2,9);txt(ctx,'i',x0+24,y-12,{a:'center',font:"italic 700 14px Fraunces, serif",c:CR});
+  arrow(ctx,x1-6,y+36,x0+6,y+36,'#2a9d4a',1.8,9);txt(ctx,'u_AB = u_L',xm,y+54,{a:'center',font:"italic 700 13px Fraunces, serif",c:'#2a9d4a'});
+  txt(ctx,withR?'L':'(L ; r)',withR?xm-26:xm,y-24,{a:'center',font:"700 14px Fraunces, serif",c:CA});if(withR)txt(ctx,'r',xm+40,y-24,{a:'center',font:"700 14px Fraunces, serif",c:CA})}
+ function draw(){const {ctx,W,H}=fit(cv,.6,1.6);const nar=W<640;
+  const cy=nar?H*.25:H*.3,x0=nar?W*.16:W*.22,x1=nar?W*.84:W*.78,rc=nar?W*.11:Math.min(52,H*.13),N=nar?12:18;
+  // lignes de champ extérieures
+  if(I>.02){ctx.save();ctx.globalAlpha=Math.min(.8,I*.8);ctx.strokeStyle='#0fb5ae';ctx.lineWidth=1.3;ctx.setLineDash([5,4]);[1.7,2.5].forEach(f=>{ctx.beginPath();ctx.ellipse((x0+x1)/2,cy,(x1-x0)/2+rc*f*.6,rc*f,0,0,7);ctx.stroke()});ctx.restore();
+   txt(ctx,'champ magnétique B',(x0+x1)/2,cy-rc*2.5-6,{a:'center',font:"italic 700 13px Fraunces, serif",c:'#0fb5ae',alpha:Math.min(1,I)})}
+  const e=coil(ctx,x0,x1,cy,rc,N,I,ph);
+  const ax=nar?W*.05:W*.08,bx=nar?W*.95:W*.92;wires(ctx,[[[ax,cy+rc*1.6],[ax,cy],[x0-2,cy-rc]],[[x1+2,cy-rc],[bx,cy],[bx,cy+rc*1.6]]]);
+  dot(ctx,ax,cy+rc*1.6,CK);dot(ctx,bx,cy+rc*1.6,CK);txt(ctx,'A',ax,cy+rc*1.6+18,{a:'center',font:"700 15px Fraunces, serif"});txt(ctx,'B',bx,cy+rc*1.6+18,{a:'center',font:"700 15px Fraunces, serif"});
+  if(I>.02){arrow(ctx,ax,cy+rc*1.2,ax,cy+rc*.3,CR,2.2,9);txt(ctx,'i',ax+10,cy+rc*.8,{font:"italic 700 15px Fraunces, serif",c:CR})}
+  txt(ctx,'fil de cuivre verni — spires jointives',(x0+x1)/2,cy+rc+26,{a:'center',font:"700 13px Fraunces, serif",c:'#b5652a'});
+  txt(ctx,'support isolant (mandrin)',(x0+x1)/2,cy+rc+44,{a:'center',font:"italic 12px Fraunces, serif",c:'#8a7a52'});
+  ctx.save();ctx.strokeStyle='#e4def3';ctx.setLineDash([5,5]);ctx.beginPath();ctx.moveTo(20,nar?H*.42:H*.56);ctx.lineTo(W-20,nar?H*.42:H*.56);ctx.stroke();ctx.restore();
+  txt(ctx,'Symboles',W/2,nar?H*.42+20:H*.56+20,{a:'center',font:"700 13px Fraunces, serif",c:CV});
+  if(nar){sym(ctx,W*.1,W*.9,H*.55,false);txt(ctx,'ou',W/2,H*.69,{a:'center',font:"italic 15px Fraunces, serif"});sym(ctx,W*.1,W*.9,H*.78,true)}
+  else{sym(ctx,W*.05,W*.43,H*.72,false);txt(ctx,'ou',W/2,H*.73,{a:'center',font:"italic 16px Fraunces, serif"});sym(ctx,W*.57,W*.95,H*.72,true)}
+  txt(ctx,'u_L = r·i + L·di/dt',W/2,nar?H-34:H-14,{a:'center',font:"700 15px Fraunces, serif",c:CV});sig(ctx,W,H)}
+ live(cv,dt=>{I+=((on?1:0)-I)*Math.min(1,dt*1.5);ph+=dt*1.2*I;draw()});reg('rl',draw)})();
+
+/* ---------- RL : courbes ---------- */
+(function(){const cv=$('#cvL4');let up=true,play=false;
+ $('#l4M').onclick=()=>{up=true;draw()};$('#l4D').onclick=()=>{up=false;draw()};$('#l4play').onclick=()=>{play=!play;if(play&&+$('#l4t').value>=4.99)$('#l4t').value=0;$('#l4play').textContent=play?'⏸ Pause':'▶ Animer'};
+ function draw(){const {ctx,W,H}=fit(cv,.4,1.5);const rho=+$('#l4r').value,s=+$('#l4t').value;$('#l4rv').textContent=fmt(rho,2)+(rho===0?' (bobine idéale)':'');$('#l4tv').textContent=fmt(s,2)+' τ';$('#l4M').classList.toggle('on',up);$('#l4D').classList.toggle('on',!up);
+  const narrow=W<640,n=3,gw=narrow?W-20:(W-40)/3,gh=narrow?(H-40)/3:H-20;
+  const G=up?[['i','I_p',x=>1-Math.exp(-x),CB,[[1,'I_p'],[.63,'0,63 I_p']]],['u_R','',x=>(1-rho)*(1-Math.exp(-x)),CT,[[1-rho,'U_max'],[.63*(1-rho),'0,63']]],['u_L','',x=>1-(1-rho)*(1-Math.exp(-x)),'#2a9d4a',[[1,'E'],[rho,rho?'rE/(R+r)':'0']]]]
+            :[['i','',x=>Math.exp(-x),CB,[[1,'E/(R+r)'],[.37,'0,37']]],['u_R','',x=>(1-rho)*Math.exp(-x),CT,[[1-rho,'RE/(R+r)']]],['u_L','',x=>-(1-rho)*Math.exp(-x),'#2a9d4a',[[-(1-rho),'−RE/(R+r)']]]];
+  G.forEach((g,k)=>{const cx=narrow?10:10+k*(gw+10),cy=narrow?10+k*(gh+10):10;const neg=!up&&k===2;
+   plot(ctx,cx,cy,gw,gh,{t0:0,t1:5.2,y0:neg?-1.15:0,y1:neg?0.15:1.15,yl:g[0]+'(t)',c:g[3],tr:[{pts:sample(x=>g[2](Math.min(x,s)),0,s,200),c:g[3]},{pts:sample(g[2],s,5,100),c:g[3],w:1,dash:[2,4]}],ticks:g[4].map(t=>[t[0],t[1],CR]),
+    post:(c,X,Y)=>{dashL(c,X(1),Y(0),X(1),Y(g[2](1)));txt(c,'τ',X(1),Y(0)+(neg?-6:14),{a:'center',font:"800 13px Fraunces, serif",c:CR});dot(c,X(s),Y(g[2](s)),g[3])}})});
+  sig(ctx,W,H);
+  $('#l4Read').innerHTML=`<span>i = <b>${fmt(G[0][2](s),3)}</b> × E/(R+r)</span><span>u_R = <b>${fmt(G[1][2](s),3)}</b> E</span><span>u_L = <b>${fmt(G[2][2](s),3)}</b> E</span><span>u_R + u_L = <b>${fmt(G[1][2](s)+G[2][2](s),3)} E</b> ${up?'(= E)':'(= 0)'}</span>`}
+ $('#l4r').oninput=draw;$('#l4t').oninput=draw;live(cv,dt=>{if(play){let v=+$('#l4t').value+dt*.8;if(v>=5){v=5;play=false;$('#l4play').textContent='▶ Animer'}$('#l4t').value=v}draw()});reg('rl',draw)})();
+
+/* ---------- RLC : les quatre régimes ---------- */
+(function(){const cv=$('#cvReg');const L=.5,C=5e-6,E=6,Rc=2*Math.sqrt(L/C),WIN=.06,NS=3000;let data=[],prog=0;
+ function compute(R){let q=C*E,i=0;const dt=WIN/NS;const f=(q,i)=>[i,-(R*i+q/C)/L];data=[];for(let k=0;k<=NS;k++){data.push([k*dt,q/C]);const a=f(q,i),b=f(q+a[0]*dt/2,i+a[1]*dt/2),c=f(q+b[0]*dt/2,i+b[1]*dt/2),d=f(q+c[0]*dt,i+c[1]*dt);q+=dt/6*(a[0]+2*b[0]+2*c[0]+d[0]);i+=dt/6*(a[1]+2*b[1]+2*c[1]+d[1])}prog=0}
+ function reg4(R){if(R===0)return 0;if(Math.abs(R-Rc)/Rc<.03)return 2;return R<Rc?1:3}
+ const NM=[['Périodique','R_T = 0',CT],['Pseudo-périodique','R_T faible',CB],['Critique','R_T = R_c',CA],['Apériodique','R_T > R_c',CR]];
+ function draw(){const {ctx,W,H}=fit(cv,.5,1.15);const R=+$('#rgR').value;$('#rgRv').textContent=R+' Ω';const g=reg4(R),narrow=W<640;
+  const tw=narrow?(W-50)/4:Math.min(140,(W*.32-30)/1),thh=narrow?60:(H-50)/4;
+  NM.forEach((nm,k)=>{const x=narrow?10+k*(tw+10):10,y=narrow?10:10+k*(thh+10),w=narrow?tw:W*.3,h=thh;ctx.save();rrect(ctx,x,y,w,h,8);ctx.fillStyle=k===g?nm[2]+'22':'#f6f4fb';ctx.fill();ctx.strokeStyle=k===g?nm[2]:'#e4def3';ctx.lineWidth=k===g?2.5:1;ctx.stroke();ctx.restore();
+   txt(ctx,nm[0],x+8,y+16,{font:"700 "+(narrow?10:13)+"px Fraunces, serif",c:nm[2]});if(!narrow)txt(ctx,nm[1],x+w-8,y+16,{a:'right',font:"12px Fraunces, serif",c:'#5d6475'});
+   const f=[t=>Math.cos(2*Math.PI*t*2),t=>Math.exp(-1.6*t)*Math.cos(2*Math.PI*t*2),t=>(1+8*t)*Math.exp(-8*t),t=>Math.exp(-2.2*t)][k];
+   ctx.strokeStyle=nm[2];ctx.lineWidth=1.8;ctx.beginPath();for(let s=0;s<=80;s++){const t=s/80*1.5,xx=x+8+(w-16)*s/80,yy=y+h*.58-f(t)*(h*.3);s?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy)}ctx.stroke();
+   ctx.strokeStyle='#cfc8e3';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x+8,y+h*.58);ctx.lineTo(x+w-8,y+h*.58);ctx.stroke()});
+  const sx=narrow?8:W*.3+20,sy=narrow?80:10,sw=narrow?W-16:W-sx-10,sh=narrow?H-90:H-20;const idx=Math.min(NS,Math.floor(prog*NS));
+  scope(ctx,sx,sy,sw,sh,{t0:0,t1:WIN,y0:-7,y1:7,tr:[{pts:data.slice(0,idx+1).filter((p,k)=>k%2===0),c:'#ffd166',lab:'u_C(t)'}],title:NM[g][0],foot:'6 ms/div · 1,75 V/div',
+   pre:(c,X,Y)=>{if(g===1){c.strokeStyle='rgba(242,132,130,.7)';c.setLineDash([5,4]);[1,-1].forEach(s=>{c.beginPath();for(let k=0;k<=100;k++){const t=WIN*k/100,v=s*E*Math.exp(-R*t/(2*L));k?c.lineTo(X(t),Y(v)):c.moveTo(X(t),Y(v))}c.stroke()});c.setLineDash([])}
+    if(g<2){const T0=2*Math.PI*Math.sqrt(L*C),T=g===0?T0:2*Math.PI/Math.sqrt(1/(L*C)-R*R/(4*L*L));c.strokeStyle='#f28482';c.lineWidth=1.5;arrow(c,X(0),Y(6.4),X(T),Y(6.4),'#f28482',1.5,7);txt(c,g===0?'T₀':'T',X(T/2),Y(6.4)-5,{a:'center',c:'#f28482',font:"800 13px Fraunces, serif"})}}});
+  sig(ctx,W,H);const T0=2*Math.PI*Math.sqrt(L*C);
+  $('#rgRead').innerHTML=`<span>L = 0,5 H ; C = 5 µF</span><span>R<sub>c</sub> = 2√(L/C) = <b>${Math.round(Rc)} Ω</b></span><span>T₀ = 2π√(LC) = <b>${fmt(T0*1e3,2)} ms</b></span>${g===1?`<span>T = <b>${fmt(2*Math.PI/Math.sqrt(1/(L*C)-R*R/(4*L*L))*1e3,2)} ms</b> ≈ T₀</span>`:''}<span>Régime : <b style="color:${NM[g][2]}">${NM[g][0]}</b></span>`}
+ $('#rgR').oninput=()=>{compute(+$('#rgR').value)};$$('.rgp').forEach(b=>b.onclick=()=>{$('#rgR').value=b.dataset.r==='crit'?Math.round(Rc/5)*5:b.dataset.r;if(b.dataset.r==='crit')$('#rgR').value=Math.round(Rc);compute(+$('#rgR').value)});
+ compute(60);live(cv,dt=>{if(prog<1)prog=Math.min(1,prog+dt/4);draw()});reg('rlc',draw)})();
+
+/* ---------- RLC : énergies ---------- */
+(function(){const cv=$('#cvEn');let lc=true,play=false,data=[];const L=.5,C=5e-6,E=6,T0=2*Math.PI*Math.sqrt(L*C),NS=2400;
+ function compute(){const R=lc?0:+$('#enR').value;let q=C*E,i=0;const dt=4*T0/NS;const f=(q,i)=>[i,-(R*i+q/C)/L];data=[];for(let k=0;k<=NS;k++){data.push([k*dt/T0,.5*q*q/C,.5*L*i*i,q/C]);const a=f(q,i),b=f(q+a[0]*dt/2,i+a[1]*dt/2),c=f(q+b[0]*dt/2,i+b[1]*dt/2),d=f(q+c[0]*dt,i+c[1]*dt);q+=dt/6*(a[0]+2*b[0]+2*c[0]+d[0]);i+=dt/6*(a[1]+2*b[1]+2*c[1]+d[1])}}
+ $('#enLC').onclick=()=>{lc=true;compute();draw()};$('#enRLC').onclick=()=>{lc=false;compute();draw()};$('#enR').oninput=()=>{$('#enRv').textContent=$('#enR').value+' Ω';if(!lc)compute();draw()};
+ $('#enPlay').onclick=()=>{play=!play;if(play&&+$('#ent').value>=3.99)$('#ent').value=0;$('#enPlay').textContent=play?'⏸ Pause':'▶ Animer'};
+ function draw(){const {ctx,W,H}=fit(cv,.5,1.1);$('#enLC').classList.toggle('on',lc);$('#enRLC').classList.toggle('on',!lc);$('#enRv').textContent=$('#enR').value+' Ω';
+  const s=+$('#ent').value;$('#entv').textContent=fmt(s,2)+' T₀';const E0=.5*C*E*E,idx=Math.min(NS,Math.round(s/4*NS)),cur=data[idx];
+  const narrow=W<640,pw=narrow?W-20:W*.7,ph=narrow?H*.62:H-20;
+  plot(ctx,10,10,pw,ph,{t0:0,t1:4.1,y0:0,y1:1.12,yl:'E (J)',c:CV,ticks:[[1,'E_T(0)',CV]],
+   tr:[{pts:data.filter((p,k)=>k%3===0).map(p=>[p[0],p[1]/E0]),c:CA},{pts:data.filter((p,k)=>k%3===0).map(p=>[p[0],p[2]/E0]),c:CB},{pts:data.filter((p,k)=>k%3===0).map(p=>[p[0],(p[1]+p[2])/E0]),c:CV,w:3}],
+   post:(c,X,Y)=>{dashL(c,X(s),Y(0),X(s),Y(1.1),'#9aa3b5');dot(c,X(s),Y(cur[1]/E0),CA);dot(c,X(s),Y(cur[2]/E0),CB);dot(c,X(s),Y((cur[1]+cur[2])/E0),CV);
+    if(lc){arrow(c,X(0),Y(1.06),X(.5),Y(1.06),CR,1.4,7);arrow(c,X(.5),Y(1.06),X(0),Y(1.06),CR,1.4,7);txt(c,'T_e = T₀/2',X(.25),Y(1.06)-5,{a:'center',font:"700 12px Fraunces, serif",c:CR})}
+    [1,2,3,4].forEach(k=>txt(c,k+'T₀',X(k),Y(0)+14,{a:'center',font:"11px Fraunces, serif",c:'#5d6475'}));
+    let lx=X(4.1)-140;[['E_e',CA],['E_m',CB],['E_T',CV]].forEach(l=>{txt(c,l[0],lx,Y(1.1)+2,{font:"700 13px Fraunces, serif",c:l[1]});lx+=46})}});
+  const bx=narrow?20:pw+30,by=narrow?ph+30:40,bw=narrow?W-40:W-pw-50;
+  bars(ctx,bx,by,bw,[['Eₑ',cur[1],CA],['Eₘ',cur[2],CB],['E_T',cur[1]+cur[2],CV],['Joule',lc?0:E0-cur[1]-cur[2],CR]],E0);
+  if(!narrow){const cy=by+120;txt(ctx,'u_C = '+fmt(cur[3],2)+' V',bx,cy,{font:"700 14px Fraunces, serif",c:CA});txt(ctx,lc?'E_T = cte : conservation':'E_T décroît : effet Joule',bx,cy+24,{font:"700 13px Fraunces, serif",c:lc?CT:CR})}
+  sig(ctx,W,H);$('#enRead').innerHTML=`<span>E_e = <b>${sci(cur[1],2)} J</b></span><span>E_m = <b>${sci(cur[2],2)} J</b></span><span>E_T = <b>${sci(cur[1]+cur[2],2)} J</b></span><span>${lc?'T₀ = '+fmt(T0*1e3,2)+' ms ; T_e = '+fmt(T0*500,2)+' ms':'Énergie dissipée : '+sci(E0-cur[1]-cur[2],2)+' J'}</span>`}
+ compute();live(cv,dt=>{if(play){let v=+$('#ent').value+dt*.35;if(v>=4){v=4;play=false;$('#enPlay').textContent='▶ Animer'}$('#ent').value=v}draw()});$('#ent').oninput=draw;reg('rlc',draw)})();
+
+/* ---------- RLC : entretien ---------- */
+(function(){const cv=$('#cvEk');const L=.5,C=5e-6,E=6,R=80,WIN=.1,NS=3000;let data=[],prog=0,ph=0;
+ function compute(){const k=+$('#ekK').value,Re=R-k;let q=C*E,i=0;const dt=WIN/NS;const f=(q,i)=>[i,-(Re*i+q/C)/L];data=[];for(let n=0;n<=NS;n++){data.push([n*dt,q/C,i]);const a=f(q,i),b=f(q+a[0]*dt/2,i+a[1]*dt/2),c=f(q+b[0]*dt/2,i+b[1]*dt/2),d=f(q+c[0]*dt,i+c[1]*dt);q+=dt/6*(a[0]+2*b[0]+2*c[0]+d[0]);i+=dt/6*(a[1]+2*b[1]+2*c[1]+d[1])}prog=0}
+ $('#ekK').oninput=compute;$('#ekGo').onclick=compute;$('#ekOk').onclick=()=>{$('#ekK').value=80;compute()};
+ function draw(){const {ctx,W,H}=fit(cv,.48,1.25);const k=+$('#ekK').value;$('#ekKv').textContent=k+' Ω';const wide=W>=640,cw=wide?W*.38:W,chh=wide?H:H*.42;
+  const idx=Math.min(NS,Math.floor(prog*NS)),cur=data[idx];const x0=cw*.14,x1=cw*.86,yT=chh*.2,yB=chh*.8;
+  wires(ctx,[[[x0,yB],[x0,yT],[x1,yT],[x1,yB],[x0,yB]]]);flow(ctx,[[x0,yB],[x0,yT],[x1,yT],[x1,yB]],ph,Math.min(1,Math.abs(cur[2])/(E*Math.sqrt(C/L))*1.3+.04));
+  comp(ctx,'C',(x0+x1)/2,yT,0,{q:cur[1]/E,lab:'C',ly:-28});comp(ctx,'L',x1,(yT+yB)/2,Math.PI/2,{lab:'(L ; r)',lx:-44});comp(ctx,'R',(x0+x1)/2,yB,0,{lab:'R',ly:22});
+  comp(ctx,'box',x0,(yT+yB)/2,Math.PI/2,{t:'G'});txt(ctx,'u_G = k·i',x0+22,(yT+yB)/2+4,{font:"700 13px Fraunces, serif",c:CV});
+  const sx=wide?cw+6:8,sy=wide?10:chh+4,sw=wide?W-cw-14:W-16,sh=wide?H-20:H-chh-12;const yM=Math.max(E*1.1,...data.map(p=>Math.abs(p[1])))*1.05;
+  const st=k<R?['Oscillations amorties (k < R + r)','#f28482']:k===R?['Oscillations entretenues (k = R + r)','#7fd1c4']:['Amplitude croissante (k > R + r)','#ffd166'];
+  scope(ctx,sx,sy,sw,sh,{t0:0,t1:WIN,y0:-yM,y1:yM,tr:[{pts:data.slice(0,idx+1).filter((p,n)=>n%2===0).map(p=>[p[0],p[1]]),c:'#ffd166',lab:'u_C'}],title:st[0],foot:'10 ms/div'});
+  sig(ctx,W,H);$('#ekRead').innerHTML=`<span>R + r = <b>80 Ω</b></span><span>k = <b>${k} Ω</b></span><span>R + r − k = <b>${R-k} Ω</b></span><span style="color:${k===R?'#1f8a5a':'#c22a37'}"><b>${k===R?'✔ Entretien : k = R + r':'k ≠ R + r'}</b></span>`}
+ compute();live(cv,dt=>{if(prog<1)prog=Math.min(1,prog+dt/6);const idx=Math.min(NS,Math.floor(prog*NS));ph+=dt*120*Math.sign(-(data[idx]||[0,0,0])[2]);draw()});reg('rlc',draw)})();
+
+/* ---------- Quiz ---------- */
+const QZ={
+ rc:[['Dans une association en série de deux condensateurs :',['les tensions sont égales','les charges sont égales : q = q₁ = q₂','C_éq = C₁ + C₂','le courant se partage'],1,'En série, le même courant traverse les deux condensateurs : même charge, et les tensions s\'ajoutent.'],
+  ['La capacité équivalente de deux condensateurs en parallèle est :',['C₁C₂/(C₁+C₂)','C₁ + C₂','1/C₁ + 1/C₂','|C₁ − C₂|'],1,'En parallèle les charges s\'ajoutent sous la même tension : C_éq = C₁ + C₂.'],
+  ['L\'équation différentielle de la charge d\'un condensateur (RC, échelon E) est :',['RC·du_C/dt − u_C = E','RC·du_C/dt + u_C = E','u_C + R·du_C/dt = 0','RC·u_C + du_C/dt = E'],1,'E = u_C + R·i avec i = C·du_C/dt.'],
+  ['À t = τ, pendant la charge, u_C vaut :',['0,37 E','0,5 E','0,63 E','E'],2,'u_C(τ) = E(1 − e⁻¹) ≈ 0,63 E.'],
+  ['Pendant la décharge, à t = τ, la charge du condensateur vaut :',['0,63 CE','0,37 CE','CE','0'],1,'q(t) = CE·e^(−t/τ) donc q(τ) = 0,37 CE.']],
+ rl:[['La tension aux bornes d\'une bobine (L, r) en convention récepteur est :',['u = L·i','u = r·i + L·di/dt','u = r·di/dt + L·i','u = L·di/dt − r·i'],1,'u_L = r·i + L·di/dt.'],
+  ['En régime permanent, une bobine se comporte comme :',['un interrupteur ouvert','un condensateur','un conducteur ohmique de résistance r','un générateur'],2,'i = cte donc di/dt = 0 et u_L = r·i.'],
+  ['La constante de temps d\'un dipôle RL est :',['τ = L(R + r)','τ = (R + r)/L','τ = L/(R + r)','τ = RLC'],2,'τ = L/(R + r), homogène à un temps.'],
+  ['Le rôle de la diode lors de l\'ouverture de K est :',['augmenter le courant','éviter la surtension et les étincelles','charger la bobine','supprimer la résistance'],1,'Elle permet au courant de continuer à circuler et évite la surtension.'],
+  ['L\'énergie magnétique stockée dans une bobine est :',['½·L·i²','½·C·u²','L·i','½·L²·i'],0,'E_m = ½·L·i².']],
+ rlc:[['L\'équation différentielle d\'un circuit LC idéal est :',['d²u_C/dt² + LC·u_C = 0','d²u_C/dt² + (1/LC)·u_C = 0','du_C/dt + (1/LC)·u_C = 0','d²u_C/dt² − (1/LC)·u_C = 0'],1,'u_C + L·di/dt = 0 avec i = C·du_C/dt.'],
+  ['La période propre d\'un circuit LC est :',['T₀ = 2π·LC','T₀ = 2π√(LC)','T₀ = √(LC)/2π','T₀ = 2π/√(LC)'],1,'(2π/T₀)² = 1/LC.'],
+  ['Le régime critique est obtenu lorsque :',['R_T = 0','R_T = 2√(L/C)','R_T = √(LC)','R_T est très faible'],1,'R_c = 2√(L/C) : retour à zéro le plus rapide, sans oscillation.'],
+  ['Dans un circuit RLC, dE_T/dt vaut :',['0','(R + r)·i²','−(R + r)·i²','−L·i²'],2,'L\'énergie est dissipée par effet Joule.'],
+  ['Pour entretenir les oscillations avec un générateur u_G = k·i, il faut :',['k = 0','k = R + r','k = L/C','k = 2√(L/C)'],1,'Le terme d\'amortissement (R + r − k) doit être nul.']]};
+$$('.quiz').forEach(box=>{const Q=QZ[box.dataset.q];const sc=document.createElement('div');sc.className='score';box.after(sc);
+ function render(){box.innerHTML='';let score=0,done=0;sc.innerHTML=`<span>Note : <b>0</b> / 20 · <span class="qd">0</span>/5</span><button class="btn sm">↺ Recommencer</button>`;sc.querySelector('button').onclick=render;
+  const upd=()=>{sc.querySelector('b').textContent=score;sc.querySelector('.qd').textContent=done===5?('5 — '+(score>=18?'Excellent !':score>=14?'Très bien !':score>=10?'Assez bien.':'À retravailler.')):done};
+  Q.forEach((q,i)=>{const d=document.createElement('div');d.className='q';d.innerHTML=`<p>${i+1}. ${q[0]} <span style="color:#6d4bb0;font-size:13px">(4 pts)</span></p><div class="ops"></div><div class="exp"></div>`;const ops=d.querySelector('.ops');
+   q[1].forEach((o,j)=>{const b=document.createElement('button');b.textContent=String.fromCharCode(97+j)+') '+o;b.onclick=()=>{ops.querySelectorAll('button').forEach((x,kk)=>{x.disabled=true;if(kk===q[2])x.classList.add('ok')});if(j===q[2])score+=4;else b.classList.add('ko');done++;d.classList.add('done');d.querySelector('.exp').innerHTML=(j===q[2]?'✔ <b>Bonne réponse.</b> ':'✘ <b>Réponse incorrecte.</b> ')+q[3];upd()};ops.appendChild(b)});box.appendChild(d)})}
+ render()});
+show();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>redraw());
+
+</script>
+</body>
+</html>
